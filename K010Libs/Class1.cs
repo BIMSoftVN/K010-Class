@@ -3,13 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static TaskManage.Models.TestData;
 
-namespace TaskManage.Models
+namespace K010Libs
 {
-    internal class Class1
+    public class Class1
     {
-
-
     }
 }

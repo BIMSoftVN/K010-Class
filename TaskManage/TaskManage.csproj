@@ -42,6 +42,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="K010Libs">
+      <HintPath>..\K010Libs\bin\Debug\K010Libs.dll</HintPath>
+    </Reference>
     <Reference Include="MaterialDesignColors, Version=5.2.1.0, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialDesignColors.5.2.1\lib\net462\MaterialDesignColors.dll</HintPath>
     </Reference>
@@ -135,8 +138,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Models\Class1.cs" />
-    <Compile Include="Models\TestData.cs" />
+    <Compile Include="Classes\clUser.cs" />
+    <Compile Include="Models\mUser.cs" />
+    <Compile Include="ViewModels\vmSignIn.cs" />
     <Compile Include="Views\vMain.xaml.cs">
       <DependentUpon>vMain.xaml</DependentUpon>
     </Compile>

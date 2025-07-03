@@ -16,7 +16,12 @@
     MouseLeftButtonDown="Window_MouseLeftButtonDown"
     WindowStartupLocation="CenterScreen"
     WindowStyle="None"
+    xmlns:vm="clr-namespace:TaskManage.ViewModels"
     mc:Ignorable="d">
+
+    <Window.DataContext>
+        <vm:vmSignIn />
+    </Window.DataContext>
 
 
     <Grid>
@@ -117,107 +122,22 @@
                         </Border.Background>
                     </Border>
 
-                    <TextBlock Text="{Binding Email, Source={x:Static mo:TestData.MainUser}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-     
+
+                    <TextBlock Text="{Binding User.Name, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+                    <TextBlock Text="{Binding User.Age, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
 
                     <TextBox
                         x:Name="K010_textbox"
                         Margin="0,10,0,0"
                         md:HintAssist.Hint="Tài khoản"
-                        Text="{Binding Email, Source={x:Static mo:TestData.MainUser}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        Text="{Binding Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                         Style="{StaticResource MaterialDesignOutlinedTextBox}" />
 
-                    <!--<TextBox
-                        x:Name="K010_textbox2"
-                        Margin="0,10,0,0"
-                        md:HintAssist.Hint="Tài khoản"
-                        Text="{Binding Style, ElementName=K010_textbox, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                        Style="{StaticResource MaterialDesignOutlinedTextBox}" />-->
-
-                    <PasswordBox
+                    <TextBox
                         Margin="0,10,0,0"
                         md:HintAssist.Hint="Mật khẩu"
-                        Style="{StaticResource MaterialDesignOutlinedRevealPasswordBox}" />
-
-                    <!--<TextBox Width="170" Margin="0,10,0,0">
-                        <TextBox.Template>
-                            <ControlTemplate TargetType="TextBox">
-                                <StackPanel Orientation="Horizontal">
-                                    <Border
-                                        Width="170"
-                                        Height="30"
-                                        BorderBrush="Black"
-                                        BorderThickness="1"
-                                        CornerRadius="15">
-
-                                        <StackPanel
-                                            HorizontalAlignment="Left"
-                                            VerticalAlignment="Center"
-                                            Orientation="Horizontal">
-                                            <md:PackIcon
-                                                Margin="5"
-                                                Foreground="Red"
-                                                Kind="Account" />
-
-                                            <TextBox
-                                                Width="125"
-                                                HorizontalContentAlignment="Center"
-                                                VerticalContentAlignment="Center"
-                                                Background="Transparent"
-                                                BorderBrush="Transparent"
-                                                BorderThickness="0" />
-                                        </StackPanel>
-
-                                    </Border>
-                                    <TextBlock
-                                        Margin="5,0,0,0"
-                                        VerticalAlignment="Center"
-                                        Text="{TemplateBinding Text}" />
-                                </StackPanel>
-                            </ControlTemplate>
-                        </TextBox.Template>
-                    </TextBox>
-
-                    <TextBox Width="170" Margin="0,10,0,0">
-                        <TextBox.Template>
-                            <ControlTemplate TargetType="TextBox">
-                                <StackPanel Orientation="Horizontal">
-                                    <Border
-                                        Width="170"
-                                        Height="30"
-                                        BorderBrush="Black"
-                                        BorderThickness="1"
-                                        CornerRadius="15">
-
-                                        <StackPanel
-                                            HorizontalAlignment="Left"
-                                            VerticalAlignment="Center"
-                                            Orientation="Horizontal">
-                                            <md:PackIcon
-                                                Margin="5"
-                                                Foreground="Red"
-                                                Kind="Key" />
-
-                                            <TextBox
-                                                Width="125"
-                                                HorizontalContentAlignment="Center"
-                                                VerticalContentAlignment="Center"
-                                                Background="Transparent"
-                                                BorderBrush="Transparent"
-                                                BorderThickness="0" />
-                                        </StackPanel>
-
-                                    </Border>
-                                    <TextBlock
-                                        Margin="5,0,0,0"
-                                        VerticalAlignment="Center"
-                                        Text="{TemplateBinding Text}" />
-                                </StackPanel>
-                            </ControlTemplate>
-                        </TextBox.Template>
-                    </TextBox>-->
-
-
+                        Text="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        Style="{StaticResource MaterialDesignOutlinedTextBox}" />
 
                     <TextBlock
                         Margin="0,0,15,0"
@@ -231,7 +151,8 @@
                     <Button
                         Width="120"
                         Margin="0,10"
-                        Content="Đăng nhập">
+                        Content="Đăng nhập"
+                        Command="{Binding DangNhapCommand}">
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
                                 <Border

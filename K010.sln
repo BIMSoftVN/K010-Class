@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "K010Lib", "K010Lib\K010Lib.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManage", "TaskManage\TaskManage.csproj", "{6E1FCA86-863E-4225-A1EF-AB3A0549C02A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "K010Libs", "K010Libs\K010Libs.csproj", "{91C603B6-B351-4C1A-9C82-FA1409A3BA00}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{6E1FCA86-863E-4225-A1EF-AB3A0549C02A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6E1FCA86-863E-4225-A1EF-AB3A0549C02A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6E1FCA86-863E-4225-A1EF-AB3A0549C02A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{91C603B6-B351-4C1A-9C82-FA1409A3BA00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91C603B6-B351-4C1A-9C82-FA1409A3BA00}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91C603B6-B351-4C1A-9C82-FA1409A3BA00}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91C603B6-B351-4C1A-9C82-FA1409A3BA00}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
