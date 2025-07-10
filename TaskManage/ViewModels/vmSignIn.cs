@@ -17,6 +17,8 @@ namespace TaskManage.ViewModels
 {
     public class vmSignIn : PropertyChangedBase
     {
+        public Window win { get; set; }
+
         public vmSignIn()
         {
             Email = null;
@@ -67,9 +69,6 @@ namespace TaskManage.ViewModels
         }
 
 
-
-
-
         private ActionCommand dangNhapCommand;
 
         public ICommand DangNhapCommand
@@ -90,10 +89,10 @@ namespace TaskManage.ViewModels
             try
             {
                 var result = await mUser.SignIn(Email, Password);
-                if (result.returnCode == true)
+                if (true == true)
                 {
                     User = result.User;
-                    MessageBox.Show(result.returnMessage);
+                    win.Hide();
                 }
                 else
                 {

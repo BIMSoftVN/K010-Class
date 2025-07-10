@@ -7,63 +7,39 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="vMain"
     Width="800"
+    xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
     Height="450"
+    WindowState="Maximized"
+    WindowStartupLocation="CenterScreen"
+    xmlns:vm="clr-namespace:TaskManage.ViewModels"
     mc:Ignorable="d">
+
+    <Window.DataContext>
+        <vm:vmMain/>
+    </Window.DataContext>
+    
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="1*" />
-            <RowDefinition Height="2*" />
-            <RowDefinition Height="1*" />
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*" />
-            <ColumnDefinition Width="2*" />
-            <ColumnDefinition Width="1*" />
-        </Grid.ColumnDefinitions>
 
-        <StackPanel
-            Grid.Row="1"
-            Grid.Column="1"
-            Background="WhiteSmoke">
+        <Ribbon>
+            <RibbonTab Header="Xử lý File">
+                <RibbonGroup Header="Xử lý Text">
+                    <RibbonButton Label="Đọc file Text" LargeImageSource="/Images/SolidWorks.png"
+                                  Command="{Binding OpenTextFileCommand}"/>
 
-            <Image Width="80" Height="80" 
-                   Source="/Images/SolidWorks.png"/>
+                    <RibbonButton Label="Ghi file Text" LargeImageSource="/Images/SolidWorks.png"
+              Command="{Binding WriteTextFileCommand}"/>
+                </RibbonGroup>
+            </RibbonTab>
+        </Ribbon>
 
-
-            <Label Content="Nội dung chữ" />
-
-            <TextBlock Text="Nội dung chữ Textblock" TextWrapping="Wrap" />
-
-            <TextBox
-                Width="100"
-                Height="30"
-                Text="Nội dung" 
-                ToolTip="Hãy nhập Email"/>
-
-            <Button
-                Width="100"
-                Height="30"
-                Content="Đồng ý" />
-
-            <RadioButton
-                Margin="5"
-                Content="Tùy chọn 1"
-                GroupName="Group1" />
-            <RadioButton
-                Margin="5"
-                Content="Tùy chọn 2"
-                GroupName="Group1" />
-
-            <RadioButton
-                Margin="5"
-                Content="Tùy chọn 3"
-                GroupName="Group1" />
-
-            <CheckBox
-                Margin="5"
-                Content="Tùy chọn 1" />
-
-        </StackPanel>
-
+        <TextBox Grid.Row="1" Margin="20"
+                 Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                 Text="{Binding FileContent, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+            
+        </TextBox>
     </Grid>
 </Window>

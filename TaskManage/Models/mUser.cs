@@ -12,8 +12,11 @@ namespace TaskManage.Models
     {
         public static async Task<(bool returnCode, string returnMessage, clUser User)> SignIn(string email, string password)
         {
+            return (true, "Thành công", new clUser());
+
             bool returnCode = false;
             string returnMessage = string.Empty;
+
 
             clUser returnUser = new clUser();
 

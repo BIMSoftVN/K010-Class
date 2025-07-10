@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using TaskManage.ViewModels;
 
 namespace TaskManage.Views
 {
@@ -22,6 +23,7 @@ namespace TaskManage.Views
         public vSignIn()
         {
             InitializeComponent();
+            (this.DataContext as vmSignIn).win = this;
         }
 
         private void CloseWin(object sender, RoutedEventArgs e)

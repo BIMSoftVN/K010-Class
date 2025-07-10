@@ -3,12 +3,10 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="clr-namespace:TaskManage"
-    StartupUri="/Views/vMain.xaml">
+    StartupUri="/Views/vMain.xaml" ShutdownMode="OnMainWindowClose">
     <Application.Resources>
         <ResourceDictionary>
-            
-            
-            
+
             <Style x:Key="K010_Textblock_Style" TargetType="TextBlock">
                 <Setter Property="FontSize" Value="14" />
                 <Setter Property="Foreground" Value="DarkBlue" />
