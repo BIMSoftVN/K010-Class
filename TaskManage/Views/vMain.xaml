@@ -5,41 +5,94 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:TaskManage.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:vm="clr-namespace:TaskManage.ViewModels"
     Title="vMain"
     Width="800"
-    xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
     Height="450"
-    WindowState="Maximized"
     WindowStartupLocation="CenterScreen"
-    xmlns:vm="clr-namespace:TaskManage.ViewModels"
+    WindowState="Maximized"
     mc:Ignorable="d">
 
     <Window.DataContext>
-        <vm:vmMain/>
+        <vm:vmMain />
     </Window.DataContext>
-    
+
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="1*"/>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
 
         <Ribbon>
             <RibbonTab Header="Xử lý File">
                 <RibbonGroup Header="Xử lý Text">
-                    <RibbonButton Label="Đọc file Text" LargeImageSource="/Images/SolidWorks.png"
-                                  Command="{Binding OpenTextFileCommand}"/>
+                    <RibbonButton
+                        Command="{Binding OpenTextFileCommand}"
+                        Label="Đọc file Text"
+                        LargeImageSource="/Images/SolidWorks.png" />
 
-                    <RibbonButton Label="Ghi file Text" LargeImageSource="/Images/SolidWorks.png"
-              Command="{Binding WriteTextFileCommand}"/>
+                    <RibbonButton
+                        Command="{Binding WriteTextFileCommand}"
+                        Label="Ghi file Text"
+                        LargeImageSource="/Images/SolidWorks.png" />
+                </RibbonGroup>
+
+                <RibbonGroup Header="Danh sách User">
+                    <RibbonButton
+                        Command="{Binding CreateUsersCommand}"
+                        Label="Tạo danh sách"
+                        LargeImageSource="/Images/SolidWorks.png" />
+
+                    <RibbonButton
+                        Command="{Binding SaveJsonCommand}"
+                        Label="Lưu Json"
+                        LargeImageSource="/Images/SolidWorks.png" />
+
+                    <RibbonButton
+    Command="{Binding OpenJsonCommand}"
+    Label="Mở Json"
+    LargeImageSource="/Images/SolidWorks.png" />
                 </RibbonGroup>
             </RibbonTab>
         </Ribbon>
 
-        <TextBox Grid.Row="1" Margin="20"
+        <ListView Grid.Row="1" ItemsSource="{Binding UserList}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn
+                        Width="150"
+                        DisplayMemberBinding="{Binding Name, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                        Header="Tên" />
+                    <GridViewColumn
+                        Width="150"
+                        DisplayMemberBinding="{Binding Age, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                        Header="Tuổi" />
+                    <GridViewColumn
+                        Width="150"
+                        DisplayMemberBinding="{Binding Email, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                        Header="Email" />
+                    <GridViewColumn
+                        Width="150"
+                        DisplayMemberBinding="{Binding Phone, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                        Header="Số điện thoại" />
+                    <GridViewColumn
+                        Width="150"
+                        DisplayMemberBinding="{Binding Address, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                        Header="Địa chỉ" />
+                    <GridViewColumn
+                        Width="150"
+                        DisplayMemberBinding="{Binding DateOfBirth, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                        Header="Sinh nhật" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+
+        <!--<TextBox Grid.Row="1" Margin="20"
                  Style="{StaticResource MaterialDesignOutlinedTextBox}"
                  Text="{Binding FileContent, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-            
-        </TextBox>
+
+        </TextBox>-->
     </Grid>
 </Window>
