@@ -21,13 +21,30 @@ namespace TaskManage.ViewModels
 {
     public class vmMain : PropertyChangedBase
     {
+        private string _SqlitePath = null;
+        public string SqlitePath
+        {
+            get
+            {
+                return _SqlitePath;
+            }
+            set
+            {
+                _SqlitePath = value;
+                OnPropertyChanged();
+            }
+        }
+
+
+
+
         private string _FileContent = null;
-        public string FileContent 
-        { 
+        public string FileContent
+        {
             get
             {
                 return _FileContent;
-            } 
+            }
             set
             {
                 _FileContent = value;
@@ -57,7 +74,7 @@ namespace TaskManage.ViewModels
         {
             try
             {
-                FileContent = ReadTextFile();   
+                FileContent = ReadTextFile();
             }
             catch
             {
@@ -111,14 +128,14 @@ namespace TaskManage.ViewModels
                 OnPropertyChanged();
             }
         }
-   
+
 
         private void TinhKetQua()
         {
-            if (St1!=null && St2!=null)
+            if (St1 != null && St2 != null)
             {
                 KetQua = St1 + St2;
-            }    
+            }
         }
 
 
@@ -240,7 +257,7 @@ namespace TaskManage.ViewModels
             UserList.Clear();
 
             List<clUser> uList = new List<clUser>();
-            for (int i = 0; i < 50; i++) 
+            for (int i = 0; i < 50; i++)
             {
                 var age = radom.Next(18, 60);
                 var dob = DateTime.Now.AddYears(-age);
@@ -284,15 +301,15 @@ namespace TaskManage.ViewModels
         {
             try
             {
-                if (UserList!=null && UserList.Count > 0)
+                if (UserList != null && UserList.Count > 0)
                 {
                     string jSonUsers = JsonConvert.SerializeObject(UserList);
                     WriteTextFile(jSonUsers);
-                }   
+                }
                 else
                 {
                     MessageBox.Show("Không có thông tin");
-                }    
+                }
             }
             catch
             {
@@ -338,6 +355,78 @@ namespace TaskManage.ViewModels
                 MessageBox.Show(ex.Message);
                 return;
             }
+        }
+
+
+
+
+
+
+        private ActionCommand openFileSqlCommand;
+
+        public ICommand OpenFileSqlCommand
+        {
+            get
+            {
+                if (openFileSqlCommand == null)
+                {
+                    openFileSqlCommand = new ActionCommand(OpenFileSql);
+                }
+
+                return openFileSqlCommand;
+            }
+        }
+
+        private async void OpenFileSql()
+        {
+            try
+            {
+                OpenFileDialog openFileDialog = new OpenFileDialog();
+                openFileDialog.Title = "Chọn file dữ liệu";
+                openFileDialog.Filter = "Sqlite file (*.db)|*.db";
+                openFileDialog.Multiselect = false;
+
+                if (openFileDialog.ShowDialog() == true)
+                {
+                    SqlitePath = openFileDialog.FileName;
+                    await LoadDataFromSqlite();
+                }
+            }
+            catch
+            {
+
+            }
+        }
+
+
+
+        private async Task LoadDataFromSqlite()
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(SqlitePath))
+                {
+                    var kq = mUser.GetAllUsers(SqlitePath).Result;
+                    if (kq.returnCode)
+                    {
+                        UserList.Clear();
+                        UserList.AddRange(kq.User);
+                    }
+                    else
+                    {
+                        MessageBox.Show(kq.returnMessage);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Vui lòng chọn file Sqlite");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
         }
     }
 }

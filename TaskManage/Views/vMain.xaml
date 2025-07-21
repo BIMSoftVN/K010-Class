@@ -7,7 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:vm="clr-namespace:TaskManage.ViewModels"
-    Title="vMain"
+    Title="{Binding SqlitePath, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
     Width="800"
     Height="450"
     WindowStartupLocation="CenterScreen"
@@ -53,6 +53,13 @@
     Command="{Binding OpenJsonCommand}"
     Label="Mở Json"
     LargeImageSource="/Images/SolidWorks.png" />
+                </RibbonGroup>
+
+                <RibbonGroup Header="SQLite">
+                    <RibbonButton
+                    Command="{Binding OpenFileSqlCommand}"
+                    Label="Mở dữ liệu"
+                    LargeImageSource="/Images/SolidWorks.png" />
                 </RibbonGroup>
             </RibbonTab>
         </Ribbon>
