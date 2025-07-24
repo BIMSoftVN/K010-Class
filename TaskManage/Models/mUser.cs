@@ -85,11 +85,11 @@ namespace TaskManage.Models
 
 
 
-        public static async Task<(bool returnCode, string returnMessage, List<clUser> User)> GetAllUsers(string filePath)
+        public static async Task<(bool returnCode, string returnMessage, List<clUser> User)> GetAllUsers()
         {
             try
             {
-                string connectionString = $"Data Source={filePath};Version=3;";
+                string connectionString = $"Data Source={App.SqliteFilePath};Version=3;";
 
                 using (var connection = new SQLiteConnection(connectionString))
                 {
@@ -125,6 +125,163 @@ namespace TaskManage.Models
             }
         }
 
+        public static async Task<(bool returnCode, string returnMessage)> AddNewUser(clUser user)
+        {
+            try
+            {
+                string connectionString = $"Data Source={App.SqliteFilePath};Version=3;";
+
+                using (var connection = new SQLiteConnection(connectionString))
+                {
+                    connection.Open();
+
+                    using (var transaction = connection.BeginTransaction())
+                    {
+                        try
+                        {
+                            using (var cmd = connection.CreateCommand())
+                            {
+                                cmd.Parameters.AddWithValue("@Name", user.Name);
+                                cmd.Parameters.AddWithValue("@Email", user.Email);
+                                cmd.Parameters.AddWithValue("@Age", user.Age);
+                                cmd.Parameters.AddWithValue("@Phone", user.Phone);
+                                cmd.Parameters.AddWithValue("@Address", user.Address);
+                                cmd.Parameters.AddWithValue("@DateOfBirth", user.DateOfBirth);
+
+                                cmd.CommandText = "INSERT INTO [Users]([Name],[Email],[Age],[Phone],[Address],[DateOfBirth]) " +
+                                    "VALUES (@Name,@Email,@Age,@Phone,@Address,@DateOfBirth)";
+
+                                var result = await cmd.ExecuteNonQueryAsync();
+                                transaction.Commit();
+
+                                if (result == 0)
+                                {
+                                    return (true, $"Chưa thêm {user.Name} người dùng");
+                                }
+                                return (true, $"Đã thêm {user.Name} người dùng");
+
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            transaction.Rollback();
+                            return (false, ex.Message);
+                        }
+                        
+                    }
+
+                    
+                }
+            }
+            catch (Exception ex)
+            {
+                return (false, ex.Message);
+            }
+        }
+
+        public static async Task<(bool returnCode, string returnMessage)> EditUser(clUser user)
+        {
+            try
+            {
+                string connectionString = $"Data Source={App.SqliteFilePath};Version=3;";
+
+                using (var connection = new SQLiteConnection(connectionString))
+                {
+                    connection.Open();
+
+                    using (var transaction = connection.BeginTransaction())
+                    {
+                        try
+                        {
+                            using (var cmd = connection.CreateCommand())
+                            {
+                                cmd.Parameters.AddWithValue("@Id", user.Id);
+                                cmd.Parameters.AddWithValue("@Name", user.Name);
+                                cmd.Parameters.AddWithValue("@Email", user.Email);
+                                cmd.Parameters.AddWithValue("@Age", user.Age);
+                                cmd.Parameters.AddWithValue("@Phone", user.Phone);
+                                cmd.Parameters.AddWithValue("@Address", user.Address);
+                                cmd.Parameters.AddWithValue("@DateOfBirth", user.DateOfBirth);
+
+                                cmd.CommandText = "UPDATE [Users] SET " +
+                                        "[Name]=@Name,[Email]=@Email,[Age]=@Age,[Phone]=@Phone,[Address]=@Address,[DateOfBirth]=@DateOfBirth " +
+                                        "where [Id]=@Id";
+
+                                var result = await cmd.ExecuteNonQueryAsync();
+                                transaction.Commit();
+
+                                if (result == 0)
+                                {
+                                    return (true, $"Chưa sửa {user.Name} người dùng");
+                                }
+                                return (true, $"Đã sửa {user.Name} người dùng");
+
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            transaction.Rollback();
+                            return (false, ex.Message);
+                        }
+
+                    }
+
+
+                }
+            }
+            catch (Exception ex)
+            {
+                return (false, ex.Message);
+            }
+        }
+
+        public static async Task<(bool returnCode, string returnMessage)> DeleteUser(clUser user)
+        {
+            try
+            {
+                string connectionString = $"Data Source={App.SqliteFilePath};Version=3;";
+
+                using (var connection = new SQLiteConnection(connectionString))
+                {
+                    connection.Open();
+
+                    using (var transaction = connection.BeginTransaction())
+                    {
+                        try
+                        {
+                            using (var cmd = connection.CreateCommand())
+                            {
+                                cmd.Parameters.AddWithValue("@Id", user.Id);
+
+                                cmd.CommandText = "DELETE FROM [Users] where [Id]=@Id";
+
+                                var result = await cmd.ExecuteNonQueryAsync();
+                                transaction.Commit();
+
+                                if (result == 0)
+                                {
+                                    return (true, $"Chưa xóa {user.Name} người dùng");
+                                }
+                                return (true, $"Đã xóa {user.Name} người dùng");
+
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            transaction.Rollback();
+                            return (false, ex.Message);
+                        }
+
+                    }
+
+
+                }
+            }
+            catch (Exception ex)
+            {
+                return (false, ex.Message);
+            }
+        }
 
     }
 }

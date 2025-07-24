@@ -13,5 +13,6 @@ namespace TaskManage
     /// </summary>
     public partial class App : Application
     {
+        public static string SqliteFilePath { get; set; }
     }
 }

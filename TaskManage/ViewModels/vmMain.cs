@@ -21,23 +21,6 @@ namespace TaskManage.ViewModels
 {
     public class vmMain : PropertyChangedBase
     {
-        private string _SqlitePath = null;
-        public string SqlitePath
-        {
-            get
-            {
-                return _SqlitePath;
-            }
-            set
-            {
-                _SqlitePath = value;
-                OnPropertyChanged();
-            }
-        }
-
-
-
-
         private string _FileContent = null;
         public string FileContent
         {
@@ -231,6 +214,20 @@ namespace TaskManage.ViewModels
         }
 
 
+        private clUser _UserSelect = new clUser();
+        public clUser UserSelect
+        {
+            get
+            {
+                return _UserSelect;
+            }
+            set
+            {
+                _UserSelect = value;
+                OnPropertyChanged();
+            }
+        }
+
 
         private ActionCommand createUsersCommand;
 
@@ -388,7 +385,7 @@ namespace TaskManage.ViewModels
 
                 if (openFileDialog.ShowDialog() == true)
                 {
-                    SqlitePath = openFileDialog.FileName;
+                    App.SqliteFilePath = openFileDialog.FileName;
                     await LoadDataFromSqlite();
                 }
             }
@@ -404,12 +401,13 @@ namespace TaskManage.ViewModels
         {
             try
             {
-                if (!string.IsNullOrEmpty(SqlitePath))
+                UserList.Clear();
+
+                if (!string.IsNullOrEmpty(App.SqliteFilePath))
                 {
-                    var kq = mUser.GetAllUsers(SqlitePath).Result;
+                    var kq = mUser.GetAllUsers().Result;
                     if (kq.returnCode)
                     {
-                        UserList.Clear();
                         UserList.AddRange(kq.User);
                     }
                     else
@@ -427,6 +425,79 @@ namespace TaskManage.ViewModels
                 MessageBox.Show(ex.Message);
             }
 
+        }
+
+        private ActionCommand reloadSqliteCommand;
+
+        public ICommand ReloadSqliteCommand
+        {
+            get
+            {
+                if (reloadSqliteCommand == null)
+                {
+                    reloadSqliteCommand = new ActionCommand(ReloadSqlite);
+                }
+
+                return reloadSqliteCommand;
+            }
+        }
+
+        private async void ReloadSqlite()
+        {
+            await LoadDataFromSqlite();
+        }
+
+        private ActionCommand createUserSqliteCommand;
+
+        public ICommand CreateUserSqliteCommand
+        {
+            get
+            {
+                if (createUserSqliteCommand == null)
+                {
+                    createUserSqliteCommand = new ActionCommand(CreateUserSqlite);
+                }
+
+                return createUserSqliteCommand;
+            }
+        }
+
+        private async void CreateUserSqlite()
+        {
+            var win = new vUserInfo();
+            var vm = win.DataContext as vmUserInfo;
+            win.ShowDialog();
+
+            await LoadDataFromSqlite();
+        }
+
+
+
+
+
+        private ActionCommand editUserCommand;
+
+        public ICommand EditUserCommand
+        {
+            get
+            {
+                if (editUserCommand == null)
+                {
+                    editUserCommand = new ActionCommand(EditUser);
+                }
+
+                return editUserCommand;
+            }
+        }
+
+        private async void EditUser()
+        {
+            var win = new vUserInfo();
+            var vm = win.DataContext as vmUserInfo;
+            vm.User = UserSelect;
+            win.ShowDialog();
+
+            await LoadDataFromSqlite();
         }
     }
 }

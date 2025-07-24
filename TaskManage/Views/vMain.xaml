@@ -6,10 +6,10 @@
     xmlns:local="clr-namespace:TaskManage.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
-    xmlns:vm="clr-namespace:TaskManage.ViewModels"
-    Title="{Binding SqlitePath, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+    xmlns:vm="clr-namespace:TaskManage.ViewModels" xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
     Width="800"
     Height="450"
+    Title="{Binding UserSelect.Name, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
     WindowStartupLocation="CenterScreen"
     WindowState="Maximized"
     mc:Ignorable="d">
@@ -50,21 +50,39 @@
                         LargeImageSource="/Images/SolidWorks.png" />
 
                     <RibbonButton
-    Command="{Binding OpenJsonCommand}"
-    Label="Mở Json"
-    LargeImageSource="/Images/SolidWorks.png" />
+                        Command="{Binding OpenJsonCommand}"
+                        Label="Mở Json"
+                        LargeImageSource="/Images/SolidWorks.png" />
                 </RibbonGroup>
 
                 <RibbonGroup Header="SQLite">
                     <RibbonButton
-                    Command="{Binding OpenFileSqlCommand}"
-                    Label="Mở dữ liệu"
-                    LargeImageSource="/Images/SolidWorks.png" />
+                        Command="{Binding OpenFileSqlCommand}"
+                        Label="Mở dữ liệu"
+                        LargeImageSource="/Images/Icons/Open.png" />
+
+                    <RibbonButton
+                        Command="{Binding ReloadSqliteCommand}"
+                        Label="Tải lại"
+                        LargeImageSource="/Images/Icons/Reload.png" />
+                    <RibbonButton
+                        Command="{Binding CreateUserSqliteCommand}"
+                        Label="Thêm người mới"
+                        LargeImageSource="/Images/Icons/AddUser.png" />
                 </RibbonGroup>
             </RibbonTab>
         </Ribbon>
 
-        <ListView Grid.Row="1" ItemsSource="{Binding UserList}">
+        <ListView Grid.Row="1" ItemsSource="{Binding UserList}"
+                  SelectedItem="{Binding UserSelect, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+
+            <b:Interaction.Triggers>
+                <b:EventTrigger EventName="MouseDoubleClick">
+                    <b:InvokeCommandAction Command="{Binding EditUserCommand}" />
+                </b:EventTrigger>
+            </b:Interaction.Triggers>
+
+
             <ListView.View>
                 <GridView>
                     <GridViewColumn

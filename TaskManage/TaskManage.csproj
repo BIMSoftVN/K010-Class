@@ -163,6 +163,7 @@
     <Compile Include="Models\mUser.cs" />
     <Compile Include="ViewModels\vmMain.cs" />
     <Compile Include="ViewModels\vmSignIn.cs" />
+    <Compile Include="ViewModels\vmUserInfo.cs" />
     <Compile Include="Views\vMain.xaml.cs">
       <DependentUpon>vMain.xaml</DependentUpon>
     </Compile>
@@ -173,11 +174,18 @@
     <Compile Include="Views\vSignIn.xaml.cs">
       <DependentUpon>vSignIn.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\vUserInfo.xaml.cs">
+      <DependentUpon>vUserInfo.xaml</DependentUpon>
+    </Compile>
     <Page Include="Views\vMain.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\vSignIn.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\vUserInfo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -220,6 +228,15 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\Open.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\Reload.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\AddUser.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

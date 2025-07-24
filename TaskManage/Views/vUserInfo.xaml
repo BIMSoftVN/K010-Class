@@ -1,0 +1,82 @@
+﻿<Window
+    x:Class="TaskManage.Views.vUserInfo"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:TaskManage.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="clr-namespace:TaskManage.ViewModels"
+    Title="Thông tin người dùng"
+    Height="500"
+    SizeToContent="WidthAndHeight"
+    WindowStartupLocation="CenterScreen"
+    mc:Ignorable="d">
+    <Window.DataContext>
+        <vm:vmUserInfo />
+    </Window.DataContext>
+    <Grid>
+        <StackPanel Margin="20,0,20,50">
+            <StackPanel Margin="10" Orientation="Horizontal">
+                <TextBlock
+                    Width="120"
+                    Margin="0,0,10,0"
+                    VerticalAlignment="Center"
+                    Text="Họ và tên:" />
+                <TextBox
+                    Width="250"
+                    Margin="0,0,10,0"
+                    Text="{Binding User.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            </StackPanel>
+
+            <StackPanel Margin="10" Orientation="Horizontal">
+                <TextBlock
+                    Width="120"
+                    Margin="0,0,10,0"
+                    VerticalAlignment="Center"
+                    Text="Email:" />
+                <TextBox
+                    Width="250"
+                    Margin="0,0,10,0"
+                    Text="{Binding User.Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            </StackPanel>
+
+            <StackPanel Margin="10" Orientation="Horizontal">
+                <TextBlock
+                    Width="120"
+                    Margin="0,0,10,0"
+                    VerticalAlignment="Center"
+                    Text="Tuổi:" />
+                <TextBox
+                    Width="250"
+                    Margin="0,0,10,0"
+                    Text="{Binding User.Age, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            </StackPanel>
+
+            <StackPanel Margin="10" Orientation="Horizontal">
+                <TextBlock
+                    Width="120"
+                    Margin="0,0,10,0"
+                    VerticalAlignment="Center"
+                    Text="Số điện thoại:" />
+                <TextBox
+                    Width="250"
+                    Margin="0,0,10,0"
+                    Text="{Binding User.Phone, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            </StackPanel>
+
+            <StackPanel Margin="10" Orientation="Horizontal">
+                <TextBlock
+                    Width="120"
+                    Margin="0,0,10,0"
+                    VerticalAlignment="Center"
+                    Text="Địa chỉ:" />
+                <TextBox
+                    Width="250"
+                    Margin="0,0,10,0"
+                    Text="{Binding User.Address, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            </StackPanel>
+
+            <Button Content="OK" Width="150" Command="{Binding AddNewUser, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+        </StackPanel>
+    </Grid>
+</Window>
