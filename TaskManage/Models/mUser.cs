@@ -3,6 +3,7 @@ using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Data.SQLite;
 using System.Linq;
 using System.Runtime.Remoting.Messaging;
@@ -12,7 +13,7 @@ using TaskManage.Classes;
 
 namespace TaskManage.Models
 {
-    //[TestFixture]
+    [TestFixture]
     public class mUser
     {
         public static async Task<(bool returnCode, string returnMessage, clUser User)> SignIn(string email, string password)
@@ -75,13 +76,7 @@ namespace TaskManage.Models
         }
         
         
-        //[Test] 
-        //public async Task TestSQlIte()
-        //{
-        //    string filePath = @"C:\Users\kysudo\Desktop\K010.db";
-        //    var kq = await GetAllUsers(filePath);
-        //    Console.WriteLine(kq.returnMessage);
-        //}
+        
 
 
 
@@ -280,6 +275,54 @@ namespace TaskManage.Models
             catch (Exception ex)
             {
                 return (false, ex.Message);
+            }
+        }
+
+
+
+        [Test]
+        public async Task TestSQlIte()
+        {
+            var kq = await SQLServer_GetAllUsers();
+            Console.WriteLine(kq.returnMessage);
+        }
+        public static async Task<(bool returnCode, string returnMessage, List<clUser> User)> SQLServer_GetAllUsers()
+        {
+            try
+            {
+                string connectionString = $"Server=./;Database=K010;TrustServerCertificate=True;MultipleActiveResultSets=True;";
+
+                using (var connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    var uList = new List<clUser>();
+
+                    using (var cmd = connection.CreateCommand())
+                    {
+                        cmd.CommandText = "SELECT * FROM [Users]";
+                        var reader = await cmd.ExecuteReaderAsync();
+                        using (var dt = new DataTable())
+                        {
+                            dt.Load(reader);
+                            uList = JToken.FromObject(dt).ToObject<List<clUser>>();
+                        }
+                    }
+
+                    connection.Close();
+
+                    if (uList != null && uList.Count > 0)
+                    {
+                        return (true, $"Đã lấy {uList.Count} người dùng", uList);
+                    }
+                    else
+                    {
+                        return (false, "Không có người dùng nào", null);
+                    }
+                }
+            }
+            catch
+            {
+                return (false, "Lỗi khi lấy danh sách người dùng", null);
             }
         }
 

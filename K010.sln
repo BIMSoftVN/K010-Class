@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManage", "TaskManage\Ta
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "K010Libs", "K010Libs\K010Libs.csproj", "{91C603B6-B351-4C1A-9C82-FA1409A3BA00}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iCons", "iCons\iCons.csproj", "{5CCB2B98-7ED2-4D81-A31B-F5584344DAB6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{91C603B6-B351-4C1A-9C82-FA1409A3BA00}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{91C603B6-B351-4C1A-9C82-FA1409A3BA00}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{91C603B6-B351-4C1A-9C82-FA1409A3BA00}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5CCB2B98-7ED2-4D81-A31B-F5584344DAB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5CCB2B98-7ED2-4D81-A31B-F5584344DAB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5CCB2B98-7ED2-4D81-A31B-F5584344DAB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5CCB2B98-7ED2-4D81-A31B-F5584344DAB6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
