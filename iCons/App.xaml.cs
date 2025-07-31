@@ -14,6 +14,8 @@ namespace iCons
     /// </summary>
     public partial class App : Application
     {
+        public static string ConnectionString = $"Server=./;Database=iCons;Trusted_Connection=True;TrustServerCertificate=True;MultipleActiveResultSets=True;";
+
         protected override void OnStartup(StartupEventArgs e)
         {
             ApplicationThemeHelper.ApplicationThemeName = Theme.Win11LightName;
