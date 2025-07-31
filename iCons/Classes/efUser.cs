@@ -9,11 +9,9 @@ using System.Threading.Tasks;
 
 namespace iCons.Classes
 {
-    [Table("Users")]
     public class efUser : PropertyChangedBase
     {
         private string _UserName;
-        [Key]
         public string UserName
         {
             get

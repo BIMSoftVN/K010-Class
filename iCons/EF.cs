@@ -12,13 +12,13 @@ namespace iCons
     {
         public AppDbContext(string connectionString) : base(connectionString)
         {
-
         }
 
         public DbSet<efUser> Users { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<efUser>().ToTable("Users");
             modelBuilder.Entity<efUser>().HasKey(u => u.UserName);
         }
     }
