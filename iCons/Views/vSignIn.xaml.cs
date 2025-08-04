@@ -1,4 +1,5 @@
-﻿using System;
+﻿using iCons.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,7 @@ namespace iCons.Views
         public vSignIn()
         {
             InitializeComponent();
+            (this.DataContext as vmSignIn).Win = this;
         }
     }
 }

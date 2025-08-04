@@ -68,7 +68,6 @@ namespace iCons.Classes
         }
 
 
-
         private string _Password;
         public string Password
         {
@@ -83,5 +82,18 @@ namespace iCons.Classes
             }
         }
 
+        private bool _IsLocked;
+        public bool IsLocked
+        {
+            get
+            {
+                return _IsLocked;
+            }
+            set
+            {
+                _IsLocked = value;
+                OnPropertyChanged();
+            }
+        }
     }
 }

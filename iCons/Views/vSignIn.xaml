@@ -10,6 +10,7 @@
     Title="vSignIn"
     Width="600"
     Height="400"
+    xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
     dx:ThemeManager.ThemeName="Win11Light"
     AllowsTransparency="True"
     Background="Transparent"
@@ -17,11 +18,12 @@
     WindowStartupLocation="CenterScreen"
     xmlns:vm="clr-namespace:iCons.ViewModels"
     WindowStyle="None"
+    IsEnabled="{Binding IsWinActive, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
     mc:Ignorable="d">
     <Window.DataContext>
         <vm:vmSignIn />
     </Window.DataContext>
-    
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="3*" />
@@ -194,6 +196,65 @@
                     Text="Bản quyền © K010 2025"
                     TextWrapping="Wrap" />
             </Grid>
+        </Border>
+
+        <md:Snackbar Grid.ColumnSpan="2"
+                     Margin="0"
+                     HorizontalAlignment="Center"
+                     VerticalAlignment="Top"
+                     Panel.ZIndex="1000"
+                     Foreground="White"
+                     Background="{StaticResource SecondaryBrush}"
+                     MessageQueue="{Binding SbMessage, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+        </md:Snackbar>
+
+        <Border Grid.ColumnSpan="2"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Width="150"
+                Height="80"
+                Panel.ZIndex="1000"
+                CornerRadius="10"
+                BorderThickness="3"
+                BorderBrush="{StaticResource SecondaryBrush}">
+
+            <Border.Style>
+                <Style TargetType="Border">
+                    <Setter Property="Visibility" Value="Collapsed" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsWinActive, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Value="False">
+                            <Setter Property="Visibility" Value="Visible" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Border.Style>
+            
+            <Border.Background>
+                <SolidColorBrush Color="White" Opacity="0.9"/>
+            </Border.Background>
+
+            <StackPanel Margin="10"
+                         HorizontalAlignment="Stretch"
+                             VerticalAlignment="Center">
+                <ProgressBar HorizontalAlignment="Stretch"
+                             VerticalAlignment="Center"
+                             d:Value="50"
+                             d:Minimum="0"
+                             d:Maximum="100"
+                             Minimum="0"
+                             IsIndeterminate="{Binding PbIsIndeterminate, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                             Maximum="{Binding PbMaxValue, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                             Value="{Binding PbValue, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+                                    </ProgressBar>
+
+                <TextBlock d:Text="Đang tải"
+                           Text="{Binding PbMessage, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                            HorizontalAlignment="Center"
+                             VerticalAlignment="Center"/>
+            </StackPanel>
+            
+                
+            
         </Border>
     </Grid>
 </Window>

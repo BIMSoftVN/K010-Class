@@ -1,17 +1,23 @@
 ﻿using iCons.Models;
+using iCons.Views;
 using K010Libs.Mvvm;
+using MaterialDesignThemes.Wpf;
 using Microsoft.Xaml.Behaviors.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace iCons.ViewModels
 {
     public class vmSignIn : PropertyChangedBase
     {
+        public vSignIn Win;
+
+
         private string _Email;
         public string Email
         {
@@ -41,6 +47,92 @@ namespace iCons.ViewModels
         }
 
 
+        private bool _IsWinActive = true;
+        public bool IsWinActive
+        {
+            get
+            {
+                return _IsWinActive;
+            }
+            set
+            {
+                _IsWinActive = value;
+                OnPropertyChanged();
+            }
+        }
+
+
+
+        private SnackbarMessageQueue _SbMessage = new SnackbarMessageQueue();
+        public SnackbarMessageQueue SbMessage
+        {
+            get
+            {
+                return _SbMessage;
+            }
+            set
+            {
+                _SbMessage = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _PbMessage = "Đang tải";
+        public string PbMessage
+        {
+            get
+            {
+                return _PbMessage;
+            }
+            set
+            {
+                _PbMessage = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private double _PbMaxValue = 0;
+        public double PbMaxValue
+        {
+            get
+            {
+                return _PbMaxValue;
+            }
+            set
+            {
+                _PbMaxValue = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private double _PbValue = 0;
+        public double PbValue
+        {
+            get
+            {
+                return _PbValue;
+            }
+            set
+            {
+                _PbValue = value;
+                OnPropertyChanged();
+            }
+        }
+        
+
+        private bool _PbIsIndeterminate = true;
+        public bool PbIsIndeterminate
+        {
+            get
+            {
+                return _PbIsIndeterminate;
+            }
+            set
+            {
+                _PbIsIndeterminate = value;
+                OnPropertyChanged();
+            }
+        }
 
 
 
@@ -61,18 +153,35 @@ namespace iCons.ViewModels
 
         private async void SignIn()
         {
+            string Message = string.Empty;
+
+            IsWinActive = false;
+            PbIsIndeterminate = true;
+            PbMessage = "Đang đăng nhập...";
+
             try
             {
-                var kq = await mUser.GetUserByEmail(this.Email);
+                var kq =  await Task.Run(async () =>
+                {
+                    return await mUser.SignIn(this.Email, this.Password);
+                });
+
+
+                Message = kq.Message;
+
                 if (kq.IsSuccess)
                 {
-
-                }
-            }
-            catch
+                    Win.Hide();
+                }  
+            } 
+            catch (Exception ex)
             {
-
+                Message = ex.Message;
             }
+
+            IsWinActive = true;
+
+            SbMessage?.Enqueue(Message, null, null, null, false, true, TimeSpan.FromSeconds(2));
         }
     }
 }
