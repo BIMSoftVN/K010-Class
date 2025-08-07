@@ -2,23 +2,24 @@
     x:Class="iCons.Views.vSignIn"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
     xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
     xmlns:local="clr-namespace:iCons.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:vm="clr-namespace:iCons.ViewModels"
     Title="vSignIn"
     Width="600"
     Height="400"
-    xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
     dx:ThemeManager.ThemeName="Win11Light"
     AllowsTransparency="True"
     Background="Transparent"
+    IsEnabled="{Binding IsWinActive, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
     ResizeMode="NoResize"
     WindowStartupLocation="CenterScreen"
-    xmlns:vm="clr-namespace:iCons.ViewModels"
     WindowStyle="None"
-    IsEnabled="{Binding IsWinActive, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
     mc:Ignorable="d">
     <Window.DataContext>
         <vm:vmSignIn />
@@ -136,23 +137,33 @@
                         FontSize="13"
                         Text="Email:" />
 
-                    <dxe:TextEdit Margin="0,5,0,0" NullText="Nhập Email"
-                                  Text="{Binding Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    <dxe:TextEdit
+                        Margin="0,5,0,0"
+                        NullText="Nhập Email"
+                        Text="{Binding Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
                     <TextBlock
                         Margin="0,10,0,0"
                         FontSize="13"
                         Text="Mật khẩu:" />
 
-                    <dxe:PasswordBoxEdit Margin="0,5,0,0" 
-                                         Text="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                         NullText="Nhập mật khẩu" />
+                    <dxe:PasswordBoxEdit
+                        Margin="0,5,0,0"
+                        NullText="Nhập mật khẩu"
+                        Text="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
                     <TextBlock
                         Margin="0,10,0,0"
                         HorizontalAlignment="Right"
                         FontStyle="Italic"
                         Text="Đổi mật khẩu">
+
+                        <b:Interaction.Triggers>
+                            <b:EventTrigger EventName="PreviewMouseDown">
+                                <b:InvokeCommandAction Command="{Binding ChangePasswordCommand}" />
+                            </b:EventTrigger>
+                        </b:Interaction.Triggers>
+
                         <TextBlock.Style>
                             <Style TargetType="TextBlock">
 
@@ -167,9 +178,9 @@
                     </TextBlock>
 
                     <Button
-                        Command="{Binding SignInCommand}"
                         Margin="0,10,0,0"
                         BorderBrush="{StaticResource SecondaryBrush}"
+                        Command="{Binding SignInCommand}"
                         Content="Đăng nhập">
                         <Button.Style>
                             <Style TargetType="Button">
@@ -198,25 +209,25 @@
             </Grid>
         </Border>
 
-        <md:Snackbar Grid.ColumnSpan="2"
-                     Margin="0"
-                     HorizontalAlignment="Center"
-                     VerticalAlignment="Top"
-                     Panel.ZIndex="1000"
-                     Foreground="White"
-                     Background="{StaticResource SecondaryBrush}"
-                     MessageQueue="{Binding SbMessage, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
-        </md:Snackbar>
+        <md:Snackbar
+            Grid.ColumnSpan="2"
+            Margin="0"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"
+            Panel.ZIndex="1000"
+            Background="{StaticResource SecondaryBrush}"
+            Foreground="White"
+            MessageQueue="{Binding SbMessage, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
 
-        <Border Grid.ColumnSpan="2"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Center"
-                Width="150"
-                Height="80"
-                Panel.ZIndex="1000"
-                CornerRadius="10"
-                BorderThickness="3"
-                BorderBrush="{StaticResource SecondaryBrush}">
+        <Border
+            Grid.ColumnSpan="2"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
+            CornerRadius="20">
+
+            <Border.Background>
+                <SolidColorBrush Opacity="0.5" Color="White" />
+            </Border.Background>
 
             <Border.Style>
                 <Style TargetType="Border">
@@ -228,33 +239,51 @@
                     </Style.Triggers>
                 </Style>
             </Border.Style>
-            
-            <Border.Background>
-                <SolidColorBrush Color="White" Opacity="0.9"/>
-            </Border.Background>
 
-            <StackPanel Margin="10"
-                         HorizontalAlignment="Stretch"
-                             VerticalAlignment="Center">
-                <ProgressBar HorizontalAlignment="Stretch"
-                             VerticalAlignment="Center"
-                             d:Value="50"
-                             d:Minimum="0"
-                             d:Maximum="100"
-                             Minimum="0"
-                             IsIndeterminate="{Binding PbIsIndeterminate, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
-                             Maximum="{Binding PbMaxValue, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
-                             Value="{Binding PbValue, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
-                                    </ProgressBar>
 
-                <TextBlock d:Text="Đang tải"
-                           Text="{Binding PbMessage, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
-                            HorizontalAlignment="Center"
-                             VerticalAlignment="Center"/>
-            </StackPanel>
-            
-                
-            
+            <Border
+                Grid.ColumnSpan="2"
+                Width="150"
+                Height="80"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Panel.ZIndex="1000"
+                BorderBrush="{StaticResource SecondaryBrush}"
+                BorderThickness="3"
+                CornerRadius="10">
+
+
+                <Border.Background>
+                    <SolidColorBrush Opacity="0.9" Color="White" />
+                </Border.Background>
+
+                <StackPanel
+                    Margin="10"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Center">
+                    <ProgressBar
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Center"
+                        d:Maximum="100"
+                        d:Minimum="0"
+                        d:Value="50"
+                        IsIndeterminate="{Binding PbIsIndeterminate, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                        Maximum="{Binding PbMaxValue, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                        Minimum="0"
+                        Value="{Binding PbValue, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
+
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        d:Text="Đang tải"
+                        Text="{Binding PbMessage, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
+                </StackPanel>
+
+
+
+            </Border>
+
         </Border>
+
     </Grid>
 </Window>

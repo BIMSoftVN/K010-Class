@@ -595,7 +595,11 @@
     <Compile Include="Classes\efUser.cs" />
     <Compile Include="EF.cs" />
     <Compile Include="Models\mUser.cs" />
+    <Compile Include="ViewModels\vmMain.cs" />
     <Compile Include="ViewModels\vmSignIn.cs" />
+    <Compile Include="Views\vAccInfo.xaml.cs">
+      <DependentUpon>vAccInfo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\vMain.xaml.cs">
       <DependentUpon>vMain.xaml</DependentUpon>
     </Compile>
@@ -607,6 +611,10 @@
       <DependentUpon>vSignIn.xaml</DependentUpon>
     </Compile>
     <Page Include="Redic.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\vAccInfo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -185,5 +185,30 @@ namespace iCons.Models
             }
             return (isSuccess, message, userInfo);
         }
+
+
+        public static async Task<(bool IsSuccess, string Message)> SendEmailChangePassword(string EmailInput)
+        {
+            bool isSuccess = false;
+            string message = string.Empty;
+            efUser userInfo = new efUser();
+
+            try
+            {
+                if (string.IsNullOrEmpty(EmailInput))
+                {
+                    message = "Email không được để trống";
+                    return (isSuccess, message);
+                }
+
+
+                return (true, "Đã gửi Email đổi mật khẩu");
+            }
+            catch (Exception ex)
+            {
+                message = ex.Message;
+            }
+            return (isSuccess, message);
+        }
     }
 }

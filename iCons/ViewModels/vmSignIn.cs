@@ -18,7 +18,7 @@ namespace iCons.ViewModels
         public vSignIn Win;
 
 
-        private string _Email;
+        private string _Email = Properties.Settings.Default.Email;
         public string Email
         {
             get
@@ -32,7 +32,7 @@ namespace iCons.ViewModels
             }
         }
 
-        private string _Password;
+        private string _Password = Properties.Settings.Default.Password;
         public string Password
         {
             get
@@ -171,9 +171,55 @@ namespace iCons.ViewModels
 
                 if (kq.IsSuccess)
                 {
+                    Properties.Settings.Default.Email = this.Email;
+                    Properties.Settings.Default.Password = this.Password;
+                    Properties.Settings.Default.Save();
+
                     Win.Hide();
                 }  
             } 
+            catch (Exception ex)
+            {
+                Message = ex.Message;
+            }
+
+            IsWinActive = true;
+
+            SbMessage?.Enqueue(Message, null, null, null, false, true, TimeSpan.FromSeconds(2));
+        }
+
+        private ActionCommand changePasswordCommand;
+
+        public ICommand ChangePasswordCommand
+        {
+            get
+            {
+                if (changePasswordCommand == null)
+                {
+                    changePasswordCommand = new ActionCommand(ChangePassword);
+                }
+
+                return changePasswordCommand;
+            }
+        }
+
+        private async void ChangePassword()
+        {
+            string Message = string.Empty;
+
+            IsWinActive = false;
+            PbIsIndeterminate = true;
+            PbMessage = "Đang gửi thông tin...";
+
+            try
+            {
+                var kq = await Task.Run(async () =>
+                {
+                    return await mUser.SendEmailChangePassword(this.Email);
+                });
+
+                Message = kq.Message;
+            }
             catch (Exception ex)
             {
                 Message = ex.Message;
