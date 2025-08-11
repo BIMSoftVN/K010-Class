@@ -1,4 +1,6 @@
-﻿using iCons.Models;
+﻿using DevExpress.Mvvm;
+using iCons.Classes;
+using iCons.Models;
 using iCons.Views;
 using K010Libs.Mvvm;
 using MaterialDesignThemes.Wpf;
@@ -136,6 +138,24 @@ namespace iCons.ViewModels
 
 
 
+
+        private efUser _User = new efUser();
+        public efUser User
+        {
+            get
+            {
+                return _User;
+            }
+            set
+            {
+                _User = value;
+                OnPropertyChanged();
+            }
+        }
+
+
+
+
         private ActionCommand signInCommand;
 
         public ICommand SignInCommand
@@ -174,6 +194,8 @@ namespace iCons.ViewModels
                     Properties.Settings.Default.Email = this.Email;
                     Properties.Settings.Default.Password = this.Password;
                     Properties.Settings.Default.Save();
+
+                    App.MainUser = kq.UserInfo;
 
                     Win.Hide();
                 }  
@@ -228,6 +250,38 @@ namespace iCons.ViewModels
             IsWinActive = true;
 
             SbMessage?.Enqueue(Message, null, null, null, false, true, TimeSpan.FromSeconds(2));
+        }
+
+        private ActionCommand checkEmailInput;
+
+        public ICommand CheckEmailInput
+        {
+            get
+            {
+                if (checkEmailInput == null)
+                {
+                    checkEmailInput = new ActionCommand(PerformCheckEmailInput);
+                }
+
+                return checkEmailInput;
+            }
+        }
+
+        private async void PerformCheckEmailInput()
+        {
+            User = new efUser();
+            try
+            {
+                var kqUser = await mUser.GetUserByEmail(this.Email);
+                if (kqUser.IsSuccess == true)
+                {
+                    User = kqUser.UserInfo;
+                }
+            }
+            catch
+            {
+
+            }
         }
     }
 }

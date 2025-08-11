@@ -210,5 +210,73 @@ namespace iCons.Models
             }
             return (isSuccess, message);
         }
+
+
+        public static async Task<(bool IsSuccess, string Message)> EditUserInfo(efUser UserInfo)
+        {
+            bool isSuccess = false;
+            string message = string.Empty;
+            efUser userInfo = new efUser();
+
+            try
+            {
+                if (!string.IsNullOrEmpty(App.ConnectionString))
+                {
+                    using (var _dbContext = new AppDbContext(App.ConnectionString))
+                    {
+                        if (_dbContext != null)
+                        {
+                            var uInfo = await _dbContext.Users
+                                .Where(o => o.UserName == UserInfo.UserName)
+                                .FirstOrDefaultAsync();
+
+
+                            if (uInfo != null)
+                            {
+                                uInfo.FullName = UserInfo.FullName;
+                                uInfo.DateOfBirth = UserInfo.DateOfBirth;
+                                uInfo.Email = UserInfo.Email;
+                                uInfo.Photo = UserInfo.Photo;
+
+                                var kqChange = await _dbContext.SaveChangesAsync();
+
+
+                                if (kqChange > 0)
+                                {
+                                    isSuccess = true;
+                                    message = "Đã cập nhật thông tin người dùng";
+
+
+                                }
+                                else
+                                {
+                                    message = "Không thể cập nhật thông tin người dùng";
+                                }
+                            }
+                            else
+                            {
+                                message = "Không tìm thấy người dùng với email hoặc tên đăng nhập này";
+                            }
+                        }
+                        else
+                        {
+                            message = "Không thể kết nối đến cơ sở dữ liệu";
+                        }
+                    };
+                }
+                else
+
+                {
+                    message = "Không có chuỗi kết nối";
+                }
+            }
+            catch (Exception ex)
+            {
+                message = ex.Message;
+            }
+            return (isSuccess, message);
+        }
+
+
     }
 }

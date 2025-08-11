@@ -95,5 +95,35 @@ namespace iCons.Classes
                 OnPropertyChanged();
             }
         }
+
+        private byte[] _Photo;
+        public byte[] Photo
+        {
+            get
+            {
+                return _Photo;
+            }
+            set
+            {
+                _Photo = value;
+                OnPropertyChanged();
+            }
+        }
+
+
+        private string _Roles;
+        public string Roles
+        {
+            get
+            {
+                return _Roles;
+            }
+            set
+            {
+                _Roles = value;
+                OnPropertyChanged();
+            }
+        }
+
     }
 }

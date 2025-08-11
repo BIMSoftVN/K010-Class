@@ -1,19 +1,23 @@
-﻿<Window xmlns:dxwui="http://schemas.devexpress.com/winfx/2008/xaml/windowsui" 
+﻿<Window
     x:Class="iCons.Views.vMain"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+    xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+    xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+    xmlns:dxwui="http://schemas.devexpress.com/winfx/2008/xaml/windowsui"
     xmlns:local="clr-namespace:iCons.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:vm="clr-namespace:iCons.ViewModels" xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
     Title="vMain"
     Width="800"
     Height="450"
-        xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+    dx:ThemeManager.ThemeName="Win11Light"
+    IsEnabled="{Binding IsWinActive, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
     WindowStartupLocation="CenterScreen"
     WindowState="Maximized"
-        xmlns:vm="clr-namespace:iCons.ViewModels"
-    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm" xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
-        dx:ThemeManager.ThemeName="Win11Light"
     mc:Ignorable="d">
 
     <Window.DataContext>
@@ -21,52 +25,182 @@
     </Window.DataContext>
 
     <Grid>
-        <dxwui:HamburgerMenu 
-            BottomBarBackground="{StaticResource SecondaryBrush}"
-            PaneBackground="{StaticResource PrimaryBrush}">
+        <dxwui:HamburgerMenu BottomBarBackground="{StaticResource SecondaryBrush}" PaneBackground="{StaticResource PrimaryBrush}">
             <dxwui:HamburgerMenu.BottomBarItems>
-                <dxwui:HamburgerMenuBottomBarNavigationButton
-                    PreviewMouseLeftButtonDown="HamburgerMenuBottomBarNavigationButton_PreviewMouseLeftButtonDown">
+                <dxwui:HamburgerMenuBottomBarNavigationButton PreviewMouseLeftButtonDown="HamburgerMenuBottomBarNavigationButton_PreviewMouseLeftButtonDown">
                     <dxwui:HamburgerMenuBottomBarNavigationButton.GlyphTemplate>
                         <DataTemplate>
-                            <md:PackIcon Width="24" Height="24"
-                                         Foreground="White"
-                                         Kind="Settings">
-                                
-                            </md:PackIcon>
+                            <md:PackIcon
+                                Width="24"
+                                Height="24"
+                                Foreground="White"
+                                Kind="Settings" />
                         </DataTemplate>
                     </dxwui:HamburgerMenuBottomBarNavigationButton.GlyphTemplate>
 
 
                     <dxwui:HamburgerMenuBottomBarNavigationButton.ContextMenu>
                         <ContextMenu>
-                            <MenuItem Header="Thông tin tài khoản" 
-                                      Command="{Binding OpenAccInfoWin_Command}" 
-                                      CommandParameter="{x:Reference AccountInfo_WinUIDg}"
-                                      Icon="{md:PackIcon Kind=Account}" />
+                            <MenuItem
+                                Command="{Binding OpenAccInfoWin_Command}"
+                                CommandParameter="{x:Reference AccountInfo_WinUIDg}"
+                                Header="Thông tin tài khoản"
+                                Icon="{md:PackIcon Kind=Account}" />
                         </ContextMenu>
                     </dxwui:HamburgerMenuBottomBarNavigationButton.ContextMenu>
                 </dxwui:HamburgerMenuBottomBarNavigationButton>
             </dxwui:HamburgerMenu.BottomBarItems>
         </dxwui:HamburgerMenu>
+
+        <md:Snackbar
+            Grid.ColumnSpan="2"
+            Margin="0"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"
+            Panel.ZIndex="1000"
+            Background="{StaticResource SecondaryBrush}"
+            Foreground="White"
+            MessageQueue="{Binding SbMessage, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
+
+        <Border
+            Grid.ColumnSpan="2"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch">
+
+            <Border.Background>
+                <SolidColorBrush Opacity="0.5" Color="White" />
+            </Border.Background>
+
+            <Border.Style>
+                <Style TargetType="Border">
+                    <Setter Property="Visibility" Value="Collapsed" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsWinActive, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Value="False">
+                            <Setter Property="Visibility" Value="Visible" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Border.Style>
+
+
+            <Border
+                Grid.ColumnSpan="2"
+                Width="150"
+                Height="80"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Panel.ZIndex="1000"
+                BorderBrush="{StaticResource SecondaryBrush}"
+                BorderThickness="3"
+                CornerRadius="10">
+
+
+                <Border.Background>
+                    <SolidColorBrush Opacity="0.9" Color="White" />
+                </Border.Background>
+
+                <StackPanel
+                    Margin="10"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Center">
+                    <ProgressBar
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Center"
+                        d:Maximum="100"
+                        d:Minimum="0"
+                        d:Value="50"
+                        IsIndeterminate="{Binding PbIsIndeterminate, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                        Maximum="{Binding PbMaxValue, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                        Minimum="0"
+                        Value="{Binding PbValue, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
+
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        d:Text="Đang tải"
+                        Text="{Binding PbMessage, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
+                </StackPanel>
+
+
+
+            </Border>
+
+        </Border>
+
+
     </Grid>
 
     <dxmvvm:Interaction.Behaviors>
         <dxwui:WinUIDialogService x:Name="AccountInfo_WinUIDg">
             <dxwui:WinUIDialogService.ViewTemplate>
                 <DataTemplate>
-                    <StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="Email" Width="90"/>
+                    <StackPanel d:DataContext="{d:DesignInstance Type=vm:vmMain, IsDesignTimeCreatable=True}">
 
-                            <dxe:TextEdit Width="120">
-                                
-                            </dxe:TextEdit>
+                        <Border
+                            Margin="0,5"
+                            Width="80"
+                            Height="80"
+                            BorderBrush="White"
+                            BorderThickness="2"
+                            CornerRadius="40">
+
+                            <b:Interaction.Triggers>
+                                <b:EventTrigger EventName="PreviewMouseDown">
+                                    <b:InvokeCommandAction Command="{Binding ChangeUserPhoto}" />
+                                </b:EventTrigger>
+                            </b:Interaction.Triggers>
+                            
+                            <Border.Style>
+                                <Style TargetType="Border">
+                                    <Setter Property="Background">
+                                        <Setter.Value>
+                                            <ImageBrush ImageSource="{Binding UserInfo.Photo, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
+                                        </Setter.Value>
+                                    </Setter>
+
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding UserInfo.Photo, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Value="{x:Null}">
+                                            <Setter Property="Background">
+                                                <Setter.Value>
+                                                    <ImageBrush ImageSource="/Images/NoImage.jpg" />
+                                                </Setter.Value>
+                                            </Setter>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Border.Style>
+                        </Border>
+
+
+
+
+                        <StackPanel Orientation="Horizontal" Margin="0,5">
+                            <TextBlock Width="70" Text="Username" />
+                            <dxe:TextEdit
+                                Width="250"
+                                IsReadOnly="True"
+                                Text="{Binding UserInfo.UserName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="0,5">
+                            <TextBlock Width="70" Text="Email" />
+                            <dxe:TextEdit Width="250" Text="{Binding UserInfo.Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="0,5">
+                            <TextBlock Width="70" Text="Tên người dùng" />
+                            <dxe:TextEdit Width="250" Text="{Binding UserInfo.FullName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="0,5">
+                            <TextBlock Width="70" Text="Ngày sinh" />
+                            <dxe:DateEdit Width="250" Text="{Binding UserInfo.DateOfBirth, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                         </StackPanel>
                     </StackPanel>
                 </DataTemplate>
             </dxwui:WinUIDialogService.ViewTemplate>
         </dxwui:WinUIDialogService>
     </dxmvvm:Interaction.Behaviors>
-    
+
+
 </Window>

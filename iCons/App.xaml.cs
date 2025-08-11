@@ -1,4 +1,5 @@
 ﻿using DevExpress.Xpf.Core;
+using iCons.Classes;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -15,6 +16,7 @@ namespace iCons
     public partial class App : Application
     {
         public static string ConnectionString = $"Server=./;Database=iCons;Trusted_Connection=True;TrustServerCertificate=True;MultipleActiveResultSets=True;";
+        public static efUser MainUser { get; set; } = new efUser();
 
         protected override void OnStartup(StartupEventArgs e)
         {
