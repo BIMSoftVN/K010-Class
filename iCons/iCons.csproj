@@ -592,13 +592,25 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Classes\clChatInfo.cs" />
     <Compile Include="Classes\efUser.cs" />
     <Compile Include="EF.cs" />
+    <Compile Include="Models\mGoogle.cs" />
     <Compile Include="Models\mUser.cs" />
+    <Compile Include="ViewModels\vmChat.cs" />
     <Compile Include="ViewModels\vmMain.cs" />
     <Compile Include="ViewModels\vmSignIn.cs" />
+    <Compile Include="Views\Main\pAdmin.xaml.cs">
+      <DependentUpon>pAdmin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Main\pHome.xaml.cs">
+      <DependentUpon>pHome.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\vAccInfo.xaml.cs">
       <DependentUpon>vAccInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\vChat.xaml.cs">
+      <DependentUpon>vChat.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\vMain.xaml.cs">
       <DependentUpon>vMain.xaml</DependentUpon>
@@ -614,7 +626,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Main\pAdmin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Main\pHome.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\vAccInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\vChat.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

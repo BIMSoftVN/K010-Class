@@ -2,6 +2,7 @@
     x:Class="iCons.Views.vMain"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
     xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
@@ -10,7 +11,7 @@
     xmlns:local="clr-namespace:iCons.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
-    xmlns:vm="clr-namespace:iCons.ViewModels" xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:vm="clr-namespace:iCons.ViewModels"
     Title="vMain"
     Width="800"
     Height="450"
@@ -49,7 +50,76 @@
                         </ContextMenu>
                     </dxwui:HamburgerMenuBottomBarNavigationButton.ContextMenu>
                 </dxwui:HamburgerMenuBottomBarNavigationButton>
+
+                <dxwui:HamburgerMenuBottomBarNavigationButton Command="{Binding OpenChatWin_Command}">
+                    <dxwui:HamburgerMenuBottomBarNavigationButton.GlyphTemplate>
+                        <DataTemplate>
+                            <md:PackIcon
+                                Width="24"
+                                Height="24"
+                                Foreground="White"
+                                Kind="Chat" />
+                        </DataTemplate>
+                    </dxwui:HamburgerMenuBottomBarNavigationButton.GlyphTemplate>
+                </dxwui:HamburgerMenuBottomBarNavigationButton>
             </dxwui:HamburgerMenu.BottomBarItems>
+
+            <dxwui:HamburgerMenu.Items>
+                <dxwui:HamburgerMenuNavigationButton Content="Trang chủ" 
+                                                     Command="{Binding OpenPage_Command, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                                                     CommandParameter="pHome"
+                                                     Foreground="White">
+                    <dxwui:HamburgerMenuNavigationButton.GlyphTemplate>
+                        <DataTemplate>
+                            <md:PackIcon
+                                Width="24"
+                                Height="24"
+                                Foreground="White"
+                                Kind="Home" />
+                        </DataTemplate>
+                    </dxwui:HamburgerMenuNavigationButton.GlyphTemplate>
+                </dxwui:HamburgerMenuNavigationButton>
+
+                <dxwui:HamburgerMenuNavigationButton Content="Quản trị" 
+                                                     Command="{Binding OpenPage_Command, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                                                     CommandParameter="pAdmin"
+                                                     Foreground="White">
+                    <dxwui:HamburgerMenuNavigationButton.GlyphTemplate>
+                        <DataTemplate>
+                            <md:PackIcon
+                                Width="24"
+                                Height="24"
+                                Foreground="White"
+                                Kind="Administrator" />
+                        </DataTemplate>
+                    </dxwui:HamburgerMenuNavigationButton.GlyphTemplate>
+                </dxwui:HamburgerMenuNavigationButton>
+            </dxwui:HamburgerMenu.Items>
+
+            <dxwui:HamburgerMenu.Content>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <Border Grid.Row="0" Background="{StaticResource SecondaryBrush}">
+                        <TextBlock d:Text="Trang chủ"
+                                   Foreground="White"
+                                   Text="{Binding FrameContent.Title, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                                   Margin="5">
+                            
+                        </TextBlock>
+                    </Border>
+
+                    <Frame Grid.Row="1"
+                           NavigationUIVisibility="Hidden"
+                           Content="{Binding FrameContent, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+                        
+                    </Frame>
+                </Grid>
+            </dxwui:HamburgerMenu.Content>
+
         </dxwui:HamburgerMenu>
 
         <md:Snackbar
@@ -137,9 +207,9 @@
                     <StackPanel d:DataContext="{d:DesignInstance Type=vm:vmMain, IsDesignTimeCreatable=True}">
 
                         <Border
-                            Margin="0,5"
                             Width="80"
                             Height="80"
+                            Margin="0,5"
                             BorderBrush="White"
                             BorderThickness="2"
                             CornerRadius="40">
@@ -149,7 +219,7 @@
                                     <b:InvokeCommandAction Command="{Binding ChangeUserPhoto}" />
                                 </b:EventTrigger>
                             </b:Interaction.Triggers>
-                            
+
                             <Border.Style>
                                 <Style TargetType="Border">
                                     <Setter Property="Background">
@@ -174,7 +244,7 @@
 
 
 
-                        <StackPanel Orientation="Horizontal" Margin="0,5">
+                        <StackPanel Margin="0,5" Orientation="Horizontal">
                             <TextBlock Width="70" Text="Username" />
                             <dxe:TextEdit
                                 Width="250"
@@ -182,17 +252,17 @@
                                 Text="{Binding UserInfo.UserName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                         </StackPanel>
 
-                        <StackPanel Orientation="Horizontal" Margin="0,5">
+                        <StackPanel Margin="0,5" Orientation="Horizontal">
                             <TextBlock Width="70" Text="Email" />
                             <dxe:TextEdit Width="250" Text="{Binding UserInfo.Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                         </StackPanel>
 
-                        <StackPanel Orientation="Horizontal" Margin="0,5">
+                        <StackPanel Margin="0,5" Orientation="Horizontal">
                             <TextBlock Width="70" Text="Tên người dùng" />
                             <dxe:TextEdit Width="250" Text="{Binding UserInfo.FullName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                         </StackPanel>
 
-                        <StackPanel Orientation="Horizontal" Margin="0,5">
+                        <StackPanel Margin="0,5" Orientation="Horizontal">
                             <TextBlock Width="70" Text="Ngày sinh" />
                             <dxe:DateEdit Width="250" Text="{Binding UserInfo.DateOfBirth, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                         </StackPanel>

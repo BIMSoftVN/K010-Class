@@ -3,6 +3,7 @@ using DevExpress.Xpf.WindowsUI;
 using iCons.Classes;
 using iCons.Models;
 using iCons.Views;
+using iCons.Views.Main;
 using K010Libs.Mvvm;
 using MaterialDesignThemes.Wpf;
 using Microsoft.Xaml.Behaviors.Core;
@@ -12,6 +13,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using System.Windows.Forms;
 using System.Windows.Input;
 
@@ -29,6 +31,20 @@ namespace iCons.ViewModels
             set
             {
                 _IsWinActive = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Page _FrameContent;
+        public Page FrameContent
+        {
+            get
+            {
+                return _FrameContent;
+            }
+            set
+            {
+                _FrameContent = value;
                 OnPropertyChanged();
             }
         }
@@ -173,8 +189,8 @@ namespace iCons.ViewModels
                             var kqEdit = await mUser.EditUserInfo(UserInfo);
                             SbMessage?.Enqueue(kqEdit.Message, null, null, null, false, true, TimeSpan.FromSeconds(2));
                         }
-  
-                        
+
+
                     }
                     else
                     {
@@ -191,7 +207,7 @@ namespace iCons.ViewModels
                 SbMessage?.Enqueue(ex.Message, null, null, null, false, true, TimeSpan.FromSeconds(2));
             }
 
-                
+
 
             IsWinActive = true;
         }
@@ -233,7 +249,7 @@ namespace iCons.ViewModels
                     {
                         UserInfo.Photo = File.ReadAllBytes(oFDg.FileName);
                     }
-                }    
+                }
             }
             catch (Exception ex)
             {
@@ -241,6 +257,62 @@ namespace iCons.ViewModels
             }
 
             IsWinActive = true;
+        }
+
+
+
+
+
+        private ActionCommand openChatWin_Command;
+
+        public ICommand OpenChatWin_Command
+        {
+            get
+            {
+                if (openChatWin_Command == null)
+                {
+                    openChatWin_Command = new ActionCommand(OpenChatWin_);
+                }
+
+                return openChatWin_Command;
+            }
+        }
+
+        private void OpenChatWin_()
+        {
+            var win = new vChat();
+            win.Show();
+        }
+
+        private ActionCommand openPage_Command;
+
+        public ICommand OpenPage_Command
+        {
+            get
+            {
+                if (openPage_Command == null)
+                {
+                    openPage_Command = new ActionCommand(OpenPage_);
+                }
+
+                return openPage_Command;
+            }
+        }
+
+        private void OpenPage_(object par)
+        {
+            string PageType = par as string;
+
+            switch (PageType)
+            {
+                case "pHome":
+                    FrameContent = new pHome();
+                    break;
+                case "pAdmin":
+                    FrameContent = new pAdmin();
+                    break;
+
+            }
         }
     }
 }
