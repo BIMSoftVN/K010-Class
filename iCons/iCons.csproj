@@ -597,6 +597,7 @@
     <Compile Include="EF.cs" />
     <Compile Include="Models\mGoogle.cs" />
     <Compile Include="Models\mUser.cs" />
+    <Compile Include="ViewModels\Main\vmAdmin.cs" />
     <Compile Include="ViewModels\vmChat.cs" />
     <Compile Include="ViewModels\vmMain.cs" />
     <Compile Include="ViewModels\vmSignIn.cs" />
