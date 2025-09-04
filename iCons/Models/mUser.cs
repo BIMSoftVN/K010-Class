@@ -266,7 +266,18 @@ namespace iCons.Models
                             }
                             else
                             {
-                                message = "Không tìm thấy người dùng với email hoặc tên đăng nhập này";
+                                _dbContext.Users.Add(UserInfo);
+                                var kqChange = await _dbContext.SaveChangesAsync();
+
+                                if (kqChange > 0)
+                                {
+                                    isSuccess = true;
+                                    message = "Đã thêm người dùng";
+                                }
+                                else
+                                {
+                                    message = "Không thể thên người dùng";
+                                }
                             }
                         }
                         else
