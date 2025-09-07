@@ -1,37 +1,22 @@
 ﻿<Project ToolsVersion="17.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
-  <!--
-    This section defines project-level properties.
-
-    AssemblyName
-      Name of the output assembly.
-    Configuration
-      Specifies a default value for debug.
-    OutputType
-      Must be "Library" for VSTO.
-    Platform
-      Specifies what CPU the output of this project can run on.
-    NoStandardLibraries
-      Set to "false" for VSTO.
-    RootNamespace
-      In C#, this specifies the namespace given to new files. In VB, all objects are
-      wrapped in this namespace at runtime.
-  -->
   <PropertyGroup>
     <ProjectTypeGuids>{BAA0C2D2-18E2-41B9-852F-F413020CAA33};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A69DA8BA-1D23-48A3-9A60-1AC137B80581}</ProjectGuid>
     <OutputType>Library</OutputType>
     <NoStandardLibraries>false</NoStandardLibraries>
-    <RootNamespace>ExcelAddIn1</RootNamespace>
-    <AssemblyName>ExcelAddIn1</AssemblyName>
-    <LoadBehavior>3</LoadBehavior>
+    <RootNamespace>ExcelWorkbook1</RootNamespace>
+    <AssemblyName>ExcelWorkbook1</AssemblyName>
+    <VSTO_HostDocumentName>ExcelWorkbook1.xlsx</VSTO_HostDocumentName>
     <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
     <DefineConstants>VSTO40;UseOfficeInterop</DefineConstants>
+    <OfficeApplication>Excel</OfficeApplication>
     <BootstrapperEnabled>true</BootstrapperEnabled>
     <BootstrapperComponentsLocation>HomeSite</BootstrapperComponentsLocation>
     <ResolveComReferenceSilent>true</ResolveComReferenceSilent>
+    <ProjectGuid>{C212D264-FF00-1E88-EAF2-B9E8B9332425}</ProjectGuid>
+    <SolutionID>0bab3a90-558b-49a5-a676-717f02bfe07c</SolutionID>
   </PropertyGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.VSTORuntime.4.0">
@@ -41,28 +26,8 @@
     </BootstrapperPackage>
   </ItemGroup>
   <PropertyGroup>
-    <!--
-      OfficeApplication
-        Add-in host application
-    -->
-    <OfficeApplication>Excel</OfficeApplication>
+    <VSTO_EmbedTypeLibraryInAssembly>false</VSTO_EmbedTypeLibraryInAssembly>
   </PropertyGroup>
-  <!--
-    This section defines properties that are set when the "Debug" configuration is selected.
-
-    DebugSymbols
-      If "true", create symbols (.pdb). If "false", do not create symbols.
-    DefineConstants
-      Constants defined for the preprocessor.
-    EnableUnmanagedDebugging
-      If "true", starting the debugger will attach both managed and unmanaged debuggers.
-    Optimize
-      If "true", optimize the build output. If "false", do not optimize.
-    OutputPath
-      Output path of project relative to the project file.
-    WarningLevel
-      Warning level for the compiler.
-  -->
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
@@ -72,22 +37,6 @@
     <DefineConstants>$(DefineConstants);DEBUG;TRACE</DefineConstants>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <!--
-    This section defines properties that are set when the "Release" configuration is selected.
-
-    DebugSymbols
-      If "true", create symbols (.pdb). If "false", do not create symbols.
-    DefineConstants
-      Constants defined for the preprocessor.
-    EnableUnmanagedDebugging
-      If "true", starting the debugger will attach both managed and unmanaged debuggers.
-    Optimize
-      If "true", optimize the build output. If "false", do not optimize.
-    OutputPath
-      Output path of project relative to the project file.
-    WarningLevel
-      Warning level for the compiler.
-  -->
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
@@ -100,26 +49,15 @@
     This section specifies references for the project.
   -->
   <ItemGroup>
-    <Reference Include="Accessibility" />
-    <Reference Include="Microsoft.Xaml.Behaviors, Version=1.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Xaml.Behaviors.Wpf.1.1.135\lib\net462\Microsoft.Xaml.Behaviors.dll</HintPath>
-    </Reference>
-    <Reference Include="PresentationCore" />
-    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="UIAutomationProvider" />
-    <Reference Include="UIAutomationTypes" />
-    <Reference Include="WindowsBase" />
-    <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Office.Tools.v4.0.Framework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -142,11 +80,23 @@
     <Reference Include="Microsoft.Office.Tools.Common.v4.0.Utilities, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.Office.Tools.Excel.v4.0.Utilities, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="stdole, Version=7.0.3300.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <Private>False</Private>
+    </Reference>
   </ItemGroup>
   <Choose>
     <When Condition="$([System.String]::Copy(&quot;;$(DefineConstants);&quot;).ToLower().Contains(';useofficeinterop;')) or $([System.String]::Copy(&quot;,$(DefineConstants),&quot;).ToLower().Contains(',useofficeinterop,'))">
       <ItemGroup>
         <Reference Include="Office, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
+          <Private>False</Private>
+          <EmbedInteropTypes>true</EmbedInteropTypes>
+        </Reference>
+        <Reference Include="Microsoft.Vbe.Interop, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
           <Private>False</Private>
           <EmbedInteropTypes>true</EmbedInteropTypes>
         </Reference>
@@ -167,6 +117,15 @@
           <Isolated>False</Isolated>
           <EmbedInteropTypes>true</EmbedInteropTypes>
         </COMReference>
+        <COMReference Include="VBIDE">
+          <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+          <VersionMajor>5</VersionMajor>
+          <VersionMinor>3</VersionMinor>
+          <Lcid>0</Lcid>
+          <WrapperTool>tlbimp</WrapperTool>
+          <Isolated>False</Isolated>
+          <EmbedInteropTypes>true</EmbedInteropTypes>
+        </COMReference>
         <COMReference Include="Microsoft.Office.Interop.Excel">
           <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
           <VersionMajor>1</VersionMajor>
@@ -180,28 +139,19 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Reference Include="stdole, Version=7.0.3300.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-      <Private>False</Private>
-    </Reference>
-  </ItemGroup>
-  <!--
-    This section defines the user source files that are part of the project.
-     
-    A "Compile" element specifies a source file to compile.
-    An "EmbeddedResource" element specifies an .resx file for embedded resources.
-    A "None" element specifies a file that is not to be passed to the compiler (for instance, 
-    a text file or XML file).
-    The "AppDesigner" element specifies the directory where the application properties files
-    can be found.
-  -->
-  <ItemGroup>
-    <Compile Include="Properties\AssemblyInfo.cs">
-      <SubType>Code</SubType>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sheet1.cs">
+      <DependentUpon>ExcelWorkbook1.xlsx</DependentUpon>
     </Compile>
-    <Compile Include="UserControl1.xaml.cs">
-      <DependentUpon>UserControl1.xaml</DependentUpon>
+    <Compile Include="Sheet1.Designer.cs">
+      <DependentUpon>Sheet1.Designer.xml</DependentUpon>
     </Compile>
-    <Compile Include="vmTest.cs" />
+    <Compile Include="ThisWorkbook.cs">
+      <DependentUpon>ExcelWorkbook1.xlsx</DependentUpon>
+    </Compile>
+    <Compile Include="ThisWorkbook.Designer.cs">
+      <DependentUpon>ThisWorkbook.Designer.xml</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -211,14 +161,8 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Ribbon1.resx">
-      <DependentUpon>Ribbon1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="TaskPaneControl.resx">
-      <DependentUpon>TaskPaneControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <None Include="ExcelAddIn1_TemporaryKey.pfx" />
-    <None Include="packages.config" />
+    <None Include="ExcelWorkbook1.xlsx" />
+    <None Include="ExcelWorkbook1_TemporaryKey.pfx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -226,41 +170,18 @@
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Ribbon1.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Ribbon1.Designer.cs">
-      <DependentUpon>Ribbon1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="TaskPaneControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="TaskPaneControl.Designer.cs">
-      <DependentUpon>TaskPaneControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ThisAddIn.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <None Include="ThisAddIn.Designer.xml">
-      <DependentUpon>ThisAddIn.cs</DependentUpon>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ThisWorkbook.Designer.xml">
+      <DependentUpon>ThisWorkbook.cs</DependentUpon>
     </None>
-    <Compile Include="ThisAddIn.Designer.cs">
-      <DependentUpon>ThisAddIn.Designer.xml</DependentUpon>
-    </Compile>
-    <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="UserControl1.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\K010Libs\K010Libs.csproj">
-      <Project>{91C603B6-B351-4C1A-9C82-FA1409A3BA00}</Project>
-      <Name>K010Libs</Name>
-    </ProjectReference>
+    <None Include="Sheet1.Designer.xml">
+      <DependentUpon>Sheet1.cs</DependentUpon>
+    </None>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -270,24 +191,30 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>ExcelAddIn1_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>ExcelWorkbook1_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>4DFBA042EDB32D24AD740CEF4AD584DF56E813CE</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>56F38CF469717EDAD6C6E1C12D530CF680DFCBA0</ManifestCertificateThumbprint>
   </PropertyGroup>
-  <!-- Include the build rules for a C# project. -->
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- Include additional build rules for an Office application add-in. -->
   <Import Project="$(VSToolsPath)\OfficeTools\Microsoft.VisualStudio.Tools.Office.targets" Condition="'$(VSToolsPath)' != ''" />
-  <!-- This section defines VSTO properties that describe the host-changeable project properties. -->
   <ProjectExtensions>
     <VisualStudio>
       <FlavorProperties GUID="{BAA0C2D2-18E2-41B9-852F-F413020CAA33}">
-        <ProjectProperties HostName="Excel" HostPackage="{29A7B9D7-A7F1-4328-8EF0-6B2D1A56B2C1}" OfficeVersion="15.0" VstxVersion="4.0" ApplicationType="Excel" Language="cs" TemplatesPath="" DebugInfoExeName="#Software\Microsoft\Office\16.0\Excel\InstallRoot\Path#excel.exe" DebugInfoCommandLine="/x" AddItemTemplatesGuid="{51063C3A-E220-4D12-8922-BDA915ACD783}" />
-        <Host Name="Excel" GeneratedCodeNamespace="ExcelAddIn1" IconIndex="0">
-          <HostItem Name="ThisAddIn" Code="ThisAddIn.cs" CanonicalName="AddIn" CanActivate="false" IconIndex="1" Blueprint="ThisAddIn.Designer.xml" GeneratedCode="ThisAddIn.Designer.cs" />
+        <ProjectProperties HostName="ExcelWorkbook1.xlsx" HostPackage="{3F2B7691-D1D1-402F-9370-2704A737CF60}" OfficeVersion="15.0" VstxVersion="4.0" ApplicationType="XLS" Language="CS" TemplatesPath="VSTOTemplates" DebugInfoExeName="C:\Program Files\Microsoft Office\root\Office16\excel.exe" DebugInfoCommandLine="/x &quot;[$OUTPUT]ExcelWorkbook1.xlsx&quot;" />
+        <Host Name="Excel Document" Path=".\ExcelWorkbook1.xlsx" GeneratedCodeNamespace="ExcelWorkbook1">
+          <HostItem Name="Sheet1" Code="Sheet1.cs" CanonicalName="Sheet1" DisplayName="Sheet1" Blueprint="Sheet1.Designer.xml" GeneratedCode="Sheet1.Designer.cs" />
+          <HostItem Name="ThisWorkbook" Code="ThisWorkbook.cs" CanonicalName="ThisWorkbook" Blueprint="ThisWorkbook.Designer.xml" GeneratedCode="ThisWorkbook.Designer.cs" />
         </Host>
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
+  <!--
+    To modify your build process, add your task inside one of the targets below and uncomment it.
+    Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
 </Project>

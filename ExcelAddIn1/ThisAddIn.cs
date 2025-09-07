@@ -7,14 +7,36 @@ using Excel = Microsoft.Office.Interop.Excel;
 using Office = Microsoft.Office.Core;
 using Microsoft.Office.Tools.Excel;
 using System.Windows.Forms;
+using Microsoft.Office.Tools;
 
 namespace ExcelAddIn1
 {
     public partial class ThisAddIn
     {
+        private TaskPaneControl taskPaneControl1;
+        private CustomTaskPane taskPaneValue;
+
         private void ThisAddIn_Startup(object sender, System.EventArgs e)
         {
+            taskPaneControl1 = new TaskPaneControl();
+            taskPaneValue = this.CustomTaskPanes.Add(
+                taskPaneControl1, "MyCustomTaskPane");
+            taskPaneValue.VisibleChanged +=
+                new EventHandler(taskPaneValue_VisibleChanged);
+        }
 
+        private void taskPaneValue_VisibleChanged(object sender, System.EventArgs e)
+        {
+            Globals.Ribbons.Ribbon1.toggleButton1.Checked =
+                taskPaneValue.Visible;
+        }
+
+        public CustomTaskPane TaskPane
+        {
+            get
+            {
+                return taskPaneValue;
+            }
         }
 
         private void ThisAddIn_Shutdown(object sender, System.EventArgs e)

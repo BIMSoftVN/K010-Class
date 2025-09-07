@@ -36,6 +36,7 @@
         {
             this.tab1 = this.Factory.CreateRibbonTab();
             this.group1 = this.Factory.CreateRibbonGroup();
+            this.toggleButton1 = this.Factory.CreateRibbonToggleButton();
             this.button1 = this.Factory.CreateRibbonButton();
             this.tab1.SuspendLayout();
             this.group1.SuspendLayout();
@@ -50,9 +51,16 @@
             // 
             // group1
             // 
+            this.group1.Items.Add(this.toggleButton1);
             this.group1.Items.Add(this.button1);
             this.group1.Label = "K010";
             this.group1.Name = "group1";
+            // 
+            // toggleButton1
+            // 
+            this.toggleButton1.Label = "toggleButton1";
+            this.toggleButton1.Name = "toggleButton1";
+            this.toggleButton1.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.toggleButton1_Click);
             // 
             // button1
             // 
@@ -80,6 +88,7 @@
         internal Microsoft.Office.Tools.Ribbon.RibbonTab tab1;
         internal Microsoft.Office.Tools.Ribbon.RibbonGroup group1;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton button1;
+        internal Microsoft.Office.Tools.Ribbon.RibbonToggleButton toggleButton1;
     }
 
     partial class ThisRibbonCollection

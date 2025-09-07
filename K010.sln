@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iCons", "iCons\iCons.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelAddIn1", "ExcelAddIn1\ExcelAddIn1.csproj", "{A69DA8BA-1D23-48A3-9A60-1AC137B80581}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelWorkbook1", "ExcelWorkbook1\ExcelWorkbook1.csproj", "{C212D264-FF00-1E88-EAF2-B9E8B9332425}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{A69DA8BA-1D23-48A3-9A60-1AC137B80581}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A69DA8BA-1D23-48A3-9A60-1AC137B80581}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A69DA8BA-1D23-48A3-9A60-1AC137B80581}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C212D264-FF00-1E88-EAF2-B9E8B9332425}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C212D264-FF00-1E88-EAF2-B9E8B9332425}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C212D264-FF00-1E88-EAF2-B9E8B9332425}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C212D264-FF00-1E88-EAF2-B9E8B9332425}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
