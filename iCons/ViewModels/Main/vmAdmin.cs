@@ -13,7 +13,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Input;
+using Microsoft.Office.Interop.Excel;
+using Excel = Microsoft.Office.Interop.Excel;
 using OpenFileDialog = System.Windows.Forms.OpenFileDialog;
+using System.Runtime.InteropServices;
 
 namespace iCons.ViewModels.Main
 {
@@ -288,6 +291,7 @@ namespace iCons.ViewModels.Main
                     using (var workbook = new XLWorkbook())
                     {
                         var worksheet = workbook.Worksheets.Add("Danh sách User");
+
                         worksheet.Cell("A1").Value = "UserName";
                         worksheet.Cell("B1").Value = "Email";
                         worksheet.Cell("C1").Value = "Tên đầy đủ";
@@ -388,6 +392,207 @@ namespace iCons.ViewModels.Main
                 }
 
                  
+            }
+            catch (Exception ex)
+            {
+                Message = ex.Message;
+            }
+
+            vmMainDc.IsWinActive = true;
+            vmMainDc.SbMessage?.Enqueue(Message, null, null, null, false, true, TimeSpan.FromSeconds(2));
+        }
+
+        private ActionCommand excelCOM_Start_Command;
+
+        public ICommand ExcelCOM_Start_Command
+        {
+            get
+            {
+                if (excelCOM_Start_Command == null)
+                {
+                    excelCOM_Start_Command = new ActionCommand(ExcelCOM_Start_);
+                }
+
+                return excelCOM_Start_Command;
+            }
+        }
+
+        private void ExcelCOM_Start_()
+        {
+            var vmMainDc = App.Current.MainWindow.DataContext as vmMain;
+            string Message = string.Empty;
+
+            try
+            {
+                var ExcelApp = new Excel.Application();
+                ExcelApp.Visible = true;
+
+                var wb = ExcelApp.Workbooks.Add();
+                var ws = (Worksheet)wb.Worksheets.Add();
+                ws.Name = "DanhSach";
+
+                ws.Cells[1, "A"].Value = "UserName";
+                ws.Cells[1, "B"].Value = "Email";
+                ws.Cells[1, "C"].Value = "Tên đầy đủ";
+                ws.Cells[1, "D"].Value = "Ngày sinh";
+                ws.Cells[1, "E"].Value = "Quyền";
+
+                var lr = 1;
+                foreach (var user in UserList)
+                {
+                    lr++;
+                    ws.Cells[lr, "A"].Value = user.UserName;
+                    ws.Cells[lr, "B"].Value = user.Email;
+                    ws.Cells[lr, "C"].Value = user.FullName;
+                    ws.Cells[lr, "D"].Value = user.DateOfBirth?.ToString("yyyy-MM-dd");
+                    ws.Cells[lr, "E"].Value = user.Roles;
+                }
+
+
+
+            }
+            catch (Exception ex)
+            {
+                Message = ex.Message;
+            }
+
+            vmMainDc.IsWinActive = true;
+            vmMainDc.SbMessage?.Enqueue(Message, null, null, null, false, true, TimeSpan.FromSeconds(2));
+        }
+
+        private ActionCommand excelCOM_ActiveExcel_Command;
+
+        public ICommand ExcelCOM_ActiveExcel_Command
+        {
+            get
+            {
+                if (excelCOM_ActiveExcel_Command == null)
+                {
+                    excelCOM_ActiveExcel_Command = new ActionCommand(ExcelCOM_ActiveExcel_);
+                }
+
+                return excelCOM_ActiveExcel_Command;
+            }
+        }
+
+        private void ExcelCOM_ActiveExcel_()
+        {
+            var vmMainDc = App.Current.MainWindow.DataContext as vmMain;
+            string Message = string.Empty;
+
+            try
+            {
+                var ExcelApp = Marshal.GetActiveObject("Excel.Application") as Excel.Application;
+
+                if (ExcelApp!=null)
+                {
+                    var wb = ExcelApp.ActiveWorkbook;
+                    var ws = (Worksheet)wb.ActiveSheet;
+
+                    ws.Cells[1, "A"].Value = "UserName";
+                    ws.Cells[1, "B"].Value = "Email";
+                    ws.Cells[1, "C"].Value = "Tên đầy đủ";
+                    ws.Cells[1, "D"].Value = "Ngày sinh";
+                    ws.Cells[1, "E"].Value = "Quyền";
+
+                    var lr = 1;
+                    foreach (var user in UserList)
+                    {
+                        lr++;
+                        ws.Cells[lr, "A"].Value = user.UserName;
+                        ws.Cells[lr, "B"].Value = user.Email;
+                        ws.Cells[lr, "C"].Value = user.FullName;
+                        ws.Cells[lr, "D"].Value = user.DateOfBirth?.ToString("yyyy-MM-dd");
+                        ws.Cells[lr, "E"].Value = user.Roles;
+                    }
+                    Message = "Đa ghi dữ liệu";
+                }
+                else
+                {
+                    Message = "Excel chưa chạy";
+                }    
+            }
+            catch (Exception ex)
+            {
+                Message = ex.Message;
+            }
+
+            vmMainDc.IsWinActive = true;
+            vmMainDc.SbMessage?.Enqueue(Message, null, null, null, false, true, TimeSpan.FromSeconds(2));
+        }
+
+        private ActionCommand excelCOM_ImportActiveExcel_Command;
+
+        public ICommand ExcelCOM_ImportActiveExcel_Command
+        {
+            get
+            {
+                if (excelCOM_ImportActiveExcel_Command == null)
+                {
+                    excelCOM_ImportActiveExcel_Command = new ActionCommand(ExcelCOM_ImportActiveExcel_);
+                }
+
+                return excelCOM_ImportActiveExcel_Command;
+            }
+        }
+
+        private async void ExcelCOM_ImportActiveExcel_()
+        {
+            var vmMainDc = App.Current.MainWindow.DataContext as vmMain;
+            string Message = string.Empty;
+
+            try
+            {
+                var ExcelApp = Marshal.GetActiveObject("Excel.Application") as Excel.Application;
+
+                if (ExcelApp != null)
+                {
+                    var wb = ExcelApp.ActiveWorkbook;
+                    var ws = (Worksheet)wb.ActiveSheet;
+
+                    long lr = ws.Cells[ws.Rows.Count, 1].End[XlDirection.xlUp].Row();
+
+                    var uList = new List<efUser>();
+
+                    for (long id = 2; id <= lr; id++)
+                    {
+                        var user = new efUser
+                        {
+                            UserName = ws.Range[$"A{id}"].Value,
+                            Email = ws.Range[$"B{id}"].Value,
+                            FullName = ws.Range[$"C{id}"].Value,
+                            Roles = ws.Range[$"E{id}"].Value,
+                        };
+
+                        try
+                        {
+                            user.DateOfBirth = DateTime.Parse(ws.Range[$"D{id}"].Value.ToString());
+                        }
+                        catch
+                        {
+
+                        }
+                         
+
+                        uList.Add(user);
+                    }
+
+                    foreach (var user in uList)
+                    {
+                        var kq = await Task.Run(async () =>
+                        {
+                            return await mUser.EditUserInfo(user);
+                        });
+                    }
+
+                    PerformLoadAll();
+
+                    Message = "Đa ghi dữ liệu";
+                }
+                else
+                {
+                    Message = "Excel chưa chạy";
+                }
             }
             catch (Exception ex)
             {

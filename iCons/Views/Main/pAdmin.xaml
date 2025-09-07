@@ -105,20 +105,79 @@
                 </MenuItem>
 
                 <MenuItem
-    Command="{Binding ImportExcel_Command}"
-    FontSize="16"
-    Header="Nhập">
+                    Command="{Binding ImportExcel_Command}"
+                    FontSize="16"
+                    Header="Nhập">
                     <MenuItem.Icon>
                         <md:PackIcon
-            Width="24"
-            Height="24"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            Foreground="DarkOrange"
-            Kind="Import" />
+                            Width="24"
+                            Height="24"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Foreground="DarkOrange"
+                            Kind="Import" />
                     </MenuItem.Icon>
                 </MenuItem>
             </MenuItem>
+
+            <MenuItem FontSize="16" Header="Excel COM">
+                <MenuItem.Icon>
+                    <md:PackIcon
+                        Width="24"
+                        Height="24"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Foreground="Green"
+                        Kind="MicrosoftExcel" />
+                </MenuItem.Icon>
+
+                <MenuItem
+                    Command="{Binding ExcelCOM_Start_Command}"
+                    FontSize="16"
+                    Header="Tạo File Excel">
+                    <MenuItem.Icon>
+                        <md:PackIcon
+                            Width="24"
+                            Height="24"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Foreground="DarkCyan"
+                            Kind="CreateNewFolder" />
+                    </MenuItem.Icon>
+                </MenuItem>
+
+                <MenuItem
+                    Command="{Binding ExcelCOM_ActiveExcel_Command}"
+                    FontSize="16"
+                    Header="Ghi Active Excel">
+                    <MenuItem.Icon>
+                        <md:PackIcon
+                            Width="24"
+                            Height="24"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Foreground="DarkCyan"
+                            Kind="Typewriter" />
+                    </MenuItem.Icon>
+                </MenuItem>
+
+                <MenuItem
+                    Command="{Binding ExcelCOM_ImportActiveExcel_Command}"
+                    FontSize="16"
+                    Header="Nhập Active Excel">
+                    <MenuItem.Icon>
+                        <md:PackIcon
+                            Width="24"
+                            Height="24"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Foreground="DarkCyan"
+                            Kind="Import" />
+                    </MenuItem.Icon>
+                </MenuItem>
+
+            </MenuItem>
+
         </Menu>
 
         <dxg:GridControl
