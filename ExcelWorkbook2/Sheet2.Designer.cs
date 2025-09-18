@@ -13,9 +13,9 @@ namespace ExcelWorkbook2 {
     
     
     /// 
-    [Microsoft.VisualStudio.Tools.Applications.Runtime.StartupObjectAttribute(2)]
+    [Microsoft.VisualStudio.Tools.Applications.Runtime.StartupObjectAttribute(1)]
     [global::System.Security.Permissions.PermissionSetAttribute(global::System.Security.Permissions.SecurityAction.Demand, Name="FullTrust")]
-    public sealed partial class Sheet1 : Microsoft.Office.Tools.Excel.WorksheetBase {
+    public sealed partial class Sheet2 : Microsoft.Office.Tools.Excel.WorksheetBase {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Tools.Office.ProgrammingModel.dll", "17.0.0.0")]
         private global::System.Object missing = global::System.Type.Missing;
@@ -23,8 +23,8 @@ namespace ExcelWorkbook2 {
         /// 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Sheet1(global::Microsoft.Office.Tools.Excel.Factory factory, global::System.IServiceProvider serviceProvider) : 
-                base(factory, serviceProvider, "Sheet1", "Sheet1") {
+        public Sheet2(global::Microsoft.Office.Tools.Excel.Factory factory, global::System.IServiceProvider serviceProvider) : 
+                base(factory, serviceProvider, "Sheet2", "Sheet2") {
         }
         
         /// 
@@ -33,7 +33,7 @@ namespace ExcelWorkbook2 {
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Never)]
         protected override void Initialize() {
             base.Initialize();
-            Globals.Sheet1 = this;
+            Globals.Sheet2 = this;
             global::System.Windows.Forms.Application.EnableVisualStyles();
             this.InitializeCachedData();
             this.InitializeControls();
@@ -148,15 +148,15 @@ namespace ExcelWorkbook2 {
     
     internal sealed partial class Globals {
         
-        private static Sheet1 _Sheet1;
+        private static Sheet2 _Sheet2;
         
-        internal static Sheet1 Sheet1 {
+        internal static Sheet2 Sheet2 {
             get {
-                return _Sheet1;
+                return _Sheet2;
             }
             set {
-                if ((_Sheet1 == null)) {
-                    _Sheet1 = value;
+                if ((_Sheet2 == null)) {
+                    _Sheet2 = value;
                 }
                 else {
                     throw new System.NotSupportedException();

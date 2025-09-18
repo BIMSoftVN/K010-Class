@@ -5,6 +5,7 @@ using Microsoft.Office.Tools.Ribbon;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -69,6 +70,32 @@ namespace ExcelWorkbook2
         {
             var win = new vMain2();
             win.ShowDialog();
+        }
+
+        private void button3_Click(object sender, RibbonControlEventArgs e)
+        {
+            var xlApp = Globals.ThisWorkbook.Application;
+            var wb = Globals.ThisWorkbook;
+            Worksheet ws1 = (Worksheet)wb.Sheets["Sheet1"];
+            Worksheet ws2 = (Worksheet)wb.Sheets["Sheet2"];
+
+            Range range1 = ws1.UsedRange;
+            Range range2 = ws2.UsedRange;
+
+            foreach (Range cell in range1)
+            {
+                var address = cell.Address;
+
+                var check = (cell.Value == ws2.Range[address].Value);
+                if (!check)
+                {
+                    cell.Interior.Color = Color.Yellow.ToArgb();
+                    ws2.Range[address].Interior.Color = Color.Yellow.ToArgb();
+
+                    cell.AddComment("Ở Sheet 2 giá trị là : " + ws2.Range[address].Value);
+                    ws2.Range[address].AddComment("Ở Sheet 1 giá trị là : " + cell.Value);
+                }    
+            }    
         }
     }
 }
