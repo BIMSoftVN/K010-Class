@@ -1,4 +1,5 @@
-﻿using ExcelWorkbook2.Models;
+﻿using AutoCAD;
+using ExcelWorkbook2.Models;
 using ExcelWorkbook2.Views;
 using Microsoft.Office.Interop.Excel;
 using Microsoft.Office.Tools.Ribbon;
@@ -7,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -96,6 +98,96 @@ namespace ExcelWorkbook2
                     ws2.Range[address].AddComment("Ở Sheet 1 giá trị là : " + cell.Value);
                 }    
             }    
+        }
+
+        private void button4_Click(object sender, RibbonControlEventArgs e)
+        {
+            try
+            {
+                var acadApp = new AcadApplication();
+                acadApp.Visible = true;
+
+                var acaDoc = acadApp.ActiveDocument;
+
+                var model = acaDoc.ModelSpace;
+                var Sp = new double[3] { 0, 0, 0 };
+                var Ep = new double[3] { 10, 10, 0 };
+                var oLine = model.AddLine(Sp, Ep);
+                oLine.color = ACAD_COLOR.acRed;
+                oLine.Update();
+
+                acadApp.ZoomExtents();
+            }
+            catch
+            {
+
+            }
+        }
+
+        private void button5_Click(object sender, RibbonControlEventArgs e)
+        {
+            try
+            {
+                var xlApp = Globals.ThisWorkbook.Application;
+                var sht = (Worksheet)Globals.ThisWorkbook.ActiveSheet;
+
+                var acadApp = Marshal.GetActiveObject("AutoCAD.Application") as AcadApplication;
+                var acaDoc = acadApp.ActiveDocument;
+                var model = acaDoc.ModelSpace;
+
+                var goc = new double[3] { 0, 0, 0 };
+                var startPoint = acaDoc.Utility.GetPoint(goc, "Hãy chọn 1 điểm");
+
+                var lr = ((Range)(sht.Cells[sht.Rows.Count, 1])).End[XlDirection.xlUp].Row;
+
+
+                for (var i = 3; i <= lr; i++)
+                {
+                    double b = (double)sht.Range[$"A{i}"].Value;
+                    double h = (double)sht.Range[$"B{i}"].Value;
+                    double cover = (double)sht.Range[$"C{i}"].Value;
+
+                    int Slt = (int)sht.Range[$"D{i}"].Value;
+                    int Dkt = (int)sht.Range[$"E{i}"].Value;
+                    int Sld = (int)sht.Range[$"F{i}"].Value;
+                    int Dkd = (int)sht.Range[$"G{i}"].Value;
+
+
+                    VeTietDien(model, startPoint, b, h, cover, Slt, Dkt, Sld, Dkd);
+
+                    startPoint[0] = startPoint[0] + b + 300;
+                }
+
+
+            }
+            catch
+            {
+
+            }
+        }
+   
+    
+        private void VeTietDien(AcadModelSpace model, double[] StartPoint,double b, double h, double cover, int Slt, int Dkt, int Sld, int Dkd)
+        {
+            try
+            {
+                double[] VerticesList = new double[]
+                {
+                    StartPoint[0], StartPoint[1],
+                    StartPoint[0] + b, StartPoint[1],
+                    StartPoint[0] + b, StartPoint[1] +h,
+                    StartPoint[0], StartPoint[1] +h,
+                };
+                var bolder = model.AddLightWeightPolyline(VerticesList);
+                bolder.Closed = true;
+                bolder.Layer = "concrete";
+
+                
+            }
+            catch
+            {
+
+            }
         }
     }
 }

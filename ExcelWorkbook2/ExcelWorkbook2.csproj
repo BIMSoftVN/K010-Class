@@ -561,6 +561,12 @@
     <Compile Include="Sheet2.Designer.cs">
       <DependentUpon>Sheet2.Designer.xml</DependentUpon>
     </Compile>
+    <Compile Include="Sheet3.cs">
+      <DependentUpon>ExcelWorkbook2.xlsx</DependentUpon>
+    </Compile>
+    <Compile Include="Sheet3.Designer.cs">
+      <DependentUpon>Sheet3.Designer.xml</DependentUpon>
+    </Compile>
     <Compile Include="ThisWorkbook.cs">
       <DependentUpon>ExcelWorkbook2.xlsx</DependentUpon>
     </Compile>
@@ -644,6 +650,25 @@
       <DependentUpon>Sheet2.cs</DependentUpon>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Sheet3.Designer.xml">
+      <DependentUpon>Sheet3.cs</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\images.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="AutoCAD">
+      <Guid>{AA9A2205-75AA-43AD-9138-1767F1BB5E0C}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
@@ -666,6 +691,7 @@
         <Host Name="Excel Document" Path=".\ExcelWorkbook2.xlsx" GeneratedCodeNamespace="ExcelWorkbook2">
           <HostItem Name="Sheet1" Code="Sheet1.cs" CanonicalName="Sheet1" DisplayName="Sheet1" Blueprint="Sheet1.Designer.xml" GeneratedCode="Sheet1.Designer.cs" />
           <HostItem Name="Sheet2" Code="Sheet2.cs" CanonicalName="Sheet2" DisplayName="Sheet2" Blueprint="Sheet2.Designer.xml" GeneratedCode="Sheet2.Designer.cs" />
+          <HostItem Name="Sheet3" Code="Sheet3.cs" CanonicalName="Sheet3" DisplayName="Sheet3" Blueprint="Sheet3.Designer.xml" GeneratedCode="Sheet3.Designer.cs" />
           <HostItem Name="ThisWorkbook" Code="ThisWorkbook.cs" CanonicalName="ThisWorkbook" Blueprint="ThisWorkbook.Designer.xml" GeneratedCode="ThisWorkbook.Designer.cs" />
         </Host>
       </FlavorProperties>
