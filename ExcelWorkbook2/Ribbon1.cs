@@ -155,7 +155,7 @@ namespace ExcelWorkbook2
 
                     VeTietDien(model, startPoint, b, h, cover, Slt, Dkt, Sld, Dkd);
 
-                    startPoint[0] = startPoint[0] + b + 300;
+                    startPoint[0] = startPoint[0] + b + 800;
                 }
 
 
@@ -182,12 +182,142 @@ namespace ExcelWorkbook2
                 bolder.Closed = true;
                 bolder.Layer = "concrete";
 
-                
+                var ThepDai = bolder.Offset(-cover)[0] as AcadLWPolyline;
+                ThepDai.Layer = "thepdai";
+
+                var kct = (b - 2 * cover - Dkt) / (Slt - 1);
+                for (int i=0; i<Slt; i++)
+                {
+                    var x = StartPoint[0] + cover + Dkt / 2 + i * kct;
+                    var y = StartPoint[1] + h - cover - Dkt / 2;
+
+                    //var rebar = model.AddCircle(new double[] { x, y, 0 }, Dkt / 2);
+                    //rebar.Layer = "thepchu";
+
+                    var rebar = model.InsertBlock(new double[] { x, y, 0 }, "rebar", Dkt, Dkt, Dkt, 0);
+                    rebar.Layer = "thepchu";
+
+                    var pArr = new double[]
+                    {
+                        x,y,0,
+                        StartPoint[0] + b/2, y+100, 0,
+                        StartPoint[0] + b + 350, y + 100 , 0
+                    };
+                    model.AddLeader(pArr, null, AcLeaderType.acLineWithArrow);
+                }
+
+                var gct = model.InsertBlock(new double[] { StartPoint[0] + b + 350, StartPoint[1] + h - cover - Dkt / 2 + 100, 0 }, "ghichuthep", 1, 1, 1, 0);
+                if (gct.HasAttributes)
+                {
+                    foreach (AcadAttributeReference attref in gct.GetAttributes())
+                    {
+                        if (attref.TagString == "1")
+                        {
+                            attref.TextString = "1";
+                        }
+                        else if (attref.TagString == "DONG1")
+                        {
+                            attref.TextString = $"{Slt}d{Dkt}";
+                        }
+                        else if (attref.TagString == "DONG2")
+                        {
+                            attref.TextString = "";
+                        }
+                    }
+                }
+
+                var kcd = (b - 2 * cover - Dkd) / (Sld - 1);
+                for (int i = 0; i < Sld; i++)
+                {
+                    var x = StartPoint[0] + cover + Dkd / 2 + i * kcd;
+                    var y = StartPoint[1] + cover + Dkt / 2;
+
+                    //var rebar = model.AddCircle(new double[] { x, y, 0 }, Dkd / 2);
+                    //rebar.Layer = "thepchu";
+                    var rebar = model.InsertBlock(new double[] { x, y, 0 }, "rebar", Dkd, Dkd, Dkd, 0);
+                    rebar.Layer = "thepchu";
+
+                    var pArr = new double[]
+                    {
+                        x,y,0,
+                        StartPoint[0] + b/2, y+100, 0,
+                        StartPoint[0] + b + 350, y + 100 , 0
+                    };
+                    model.AddLeader(pArr, null, AcLeaderType.acLineWithArrow);
+                    
+                }
+
+                var gcd = model.InsertBlock(new double[] { StartPoint[0] + b + 350, StartPoint[1] + cover + Dkt / 2 + 100, 0 }, "ghichuthep", 1, 1, 1, 0);
+                if (gcd.HasAttributes)
+                {
+                    foreach (AcadAttributeReference attref in gcd.GetAttributes())
+                    {
+                        if (attref.TagString == "1")
+                        {
+                            attref.TextString = "2";
+                        }
+                        else if (attref.TagString == "DONG1")
+                        {
+                            attref.TextString = $"{Sld}d{Dkd}";
+                        }
+                        else if (attref.TagString == "DONG2")
+                        {
+                            attref.TextString = "";
+                        }
+                    }
+                }
+
+                double[] el1 = new double[3] { StartPoint[0], StartPoint[1] - 50, 0 };
+                double[] el2 = new double[3] { StartPoint[0] + b, StartPoint[1] - 50, 0 };
+                double[] tp = new double[3] { StartPoint[0] + b/2, StartPoint[1] - 200, 0 };
+
+                var dim1 = model.AddDimAligned(el1, el2, tp);
+                dim1.StyleName = "XMT 1-1-30";
+
+                el1 = new double[3] { StartPoint[0] -50, StartPoint[1], 0 };
+                el2 = new double[3] { StartPoint[0] -50, StartPoint[1]+h, 0 };
+                tp = new double[3] { StartPoint[0] - 150, StartPoint[1]+h/2, 0 };
+
+                var dim2 = model.AddDimAligned(el1, el2, tp);
+                dim2.StyleName = "XMT 1-1-30";
             }
             catch
             {
 
             }
+        }
+
+        private void button6_Click(object sender, RibbonControlEventArgs e)
+        {
+            try
+            {
+                var acadApp = Marshal.GetActiveObject("AutoCAD.Application") as AcadApplication;
+                var acaDoc = acadApp.ActiveDocument;
+                var model = acaDoc.ModelSpace;
+
+                AcadSelectionSet ss = acaDoc.ActiveSelectionSet;
+                if (ss == null)
+                {
+                    ss = acaDoc.SelectionSets.Add("K010_SS");
+                }
+
+                ss.Clear();
+
+                short[] filterType = new short[1];
+                object[] filterDate = new object[1];
+
+                filterType[0] = (short)8;
+                filterDate[0] = "Kita_text 1";
+
+                ss.SelectOnScreen(filterType, filterDate);
+
+                MessageBox.Show($"Đã chọn {ss.Count} đối tượng");
+            }
+            catch
+            {
+
+            }
+            
         }
     }
 }

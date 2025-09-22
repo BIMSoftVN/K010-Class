@@ -36,16 +36,17 @@
         {
             this.tab1 = this.Factory.CreateRibbonTab();
             this.group1 = this.Factory.CreateRibbonGroup();
+            this.button1 = this.Factory.CreateRibbonButton();
             this.editBox1 = this.Factory.CreateRibbonEditBox();
             this.editBox2 = this.Factory.CreateRibbonEditBox();
             this.checkBox1 = this.Factory.CreateRibbonCheckBox();
             this.group2 = this.Factory.CreateRibbonGroup();
-            this.group3 = this.Factory.CreateRibbonGroup();
-            this.button1 = this.Factory.CreateRibbonButton();
             this.button2 = this.Factory.CreateRibbonButton();
             this.button3 = this.Factory.CreateRibbonButton();
-            this.button4 = this.Factory.CreateRibbonButton();
+            this.group3 = this.Factory.CreateRibbonGroup();
             this.button5 = this.Factory.CreateRibbonButton();
+            this.button4 = this.Factory.CreateRibbonButton();
+            this.button6 = this.Factory.CreateRibbonButton();
             this.tab1.SuspendLayout();
             this.group1.SuspendLayout();
             this.group2.SuspendLayout();
@@ -69,6 +70,15 @@
             this.group1.Items.Add(this.checkBox1);
             this.group1.Label = "Lấy thời tiét";
             this.group1.Name = "group1";
+            // 
+            // button1
+            // 
+            this.button1.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
+            this.button1.Image = global::ExcelWorkbook2.Properties.Resources.Capy;
+            this.button1.Label = "Lấy thời tiết";
+            this.button1.Name = "button1";
+            this.button1.ShowImage = true;
+            this.button1.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.button1_Click);
             // 
             // editBox1
             // 
@@ -94,22 +104,6 @@
             this.group2.Label = "group2";
             this.group2.Name = "group2";
             // 
-            // group3
-            // 
-            this.group3.Items.Add(this.button5);
-            this.group3.Items.Add(this.button4);
-            this.group3.Label = "AutoCAD COM";
-            this.group3.Name = "group3";
-            // 
-            // button1
-            // 
-            this.button1.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
-            this.button1.Image = global::ExcelWorkbook2.Properties.Resources.Capy;
-            this.button1.Label = "Lấy thời tiết";
-            this.button1.Name = "button1";
-            this.button1.ShowImage = true;
-            this.button1.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.button1_Click);
-            // 
             // button2
             // 
             this.button2.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
@@ -124,14 +118,13 @@
             this.button3.Name = "button3";
             this.button3.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.button3_Click);
             // 
-            // button4
+            // group3
             // 
-            this.button4.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
-            this.button4.Image = global::ExcelWorkbook2.Properties.Resources.images;
-            this.button4.Label = "Tạo File CAD";
-            this.button4.Name = "button4";
-            this.button4.ShowImage = true;
-            this.button4.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.button4_Click);
+            this.group3.Items.Add(this.button5);
+            this.group3.Items.Add(this.button4);
+            this.group3.Items.Add(this.button6);
+            this.group3.Label = "AutoCAD COM";
+            this.group3.Name = "group3";
             // 
             // button5
             // 
@@ -141,6 +134,24 @@
             this.button5.Name = "button5";
             this.button5.ShowImage = true;
             this.button5.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.button5_Click);
+            // 
+            // button4
+            // 
+            this.button4.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
+            this.button4.Image = global::ExcelWorkbook2.Properties.Resources.images;
+            this.button4.Label = "Tạo File CAD";
+            this.button4.Name = "button4";
+            this.button4.ShowImage = true;
+            this.button4.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.button4_Click);
+            // 
+            // button6
+            // 
+            this.button6.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
+            this.button6.Image = global::ExcelWorkbook2.Properties.Resources.images;
+            this.button6.Label = "Quét mặt bằng cọc";
+            this.button6.Name = "button6";
+            this.button6.ShowImage = true;
+            this.button6.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.button6_Click);
             // 
             // Ribbon1
             // 
@@ -174,6 +185,7 @@
         internal Microsoft.Office.Tools.Ribbon.RibbonGroup group3;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton button4;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton button5;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton button6;
     }
 
     partial class ThisRibbonCollection
