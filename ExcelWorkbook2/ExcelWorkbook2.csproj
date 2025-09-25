@@ -534,6 +534,8 @@
     <Compile Include="ActionsPaneControl1.Designer.cs">
       <DependentUpon>ActionsPaneControl1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Classes\clCoc.cs" />
+    <Compile Include="Classes\clText.cs" />
     <Compile Include="Classes\clWeatherInfo.cs" />
     <Compile Include="HelloControl.cs">
       <SubType>UserControl</SubType>

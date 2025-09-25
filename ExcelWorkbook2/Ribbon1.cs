@@ -1,4 +1,7 @@
 ﻿using AutoCAD;
+using DevExpress.Utils.Gesture;
+using DevExpress.XtraSpreadsheet.DocumentFormats.Xlsb;
+using ExcelWorkbook2.Classes;
 using ExcelWorkbook2.Models;
 using ExcelWorkbook2.Views;
 using Microsoft.Office.Interop.Excel;
@@ -296,6 +299,7 @@ namespace ExcelWorkbook2
                 var model = acaDoc.ModelSpace;
 
                 AcadSelectionSet ss = acaDoc.ActiveSelectionSet;
+
                 if (ss == null)
                 {
                     ss = acaDoc.SelectionSets.Add("K010_SS");
@@ -303,15 +307,129 @@ namespace ExcelWorkbook2
 
                 ss.Clear();
 
-                short[] filterType = new short[1];
-                object[] filterDate = new object[1];
+                short[] filterType = new short[4];
+                object[] filterDate = new object[4];
 
-                filterType[0] = (short)8;
-                filterDate[0] = "Kita_text 1";
+                filterType[0] = (short)-4;
+                filterDate[0] = "<OR";
+
+                filterType[1] = (short)0;
+                filterDate[1] = "TEXT";
+
+                filterType[2] = (short)0;
+                filterDate[2] = "CIRCLE";
+
+                filterType[3] = (short)-4;
+                filterDate[3] = "OR>";
 
                 ss.SelectOnScreen(filterType, filterDate);
 
-                MessageBox.Show($"Đã chọn {ss.Count} đối tượng");
+                List<clCoc> cList = new List<clCoc>();
+                List<clText> tList = new List<clText>();
+
+                foreach (AcadEntity oEntity in ss)
+                {
+                    if (oEntity is AcadCircle)
+                    {
+                        var oCircle = (AcadCircle)oEntity;
+                        var coc = new clCoc()
+                        {
+                            Diameter = oCircle.Diameter,
+                            Orgin = oCircle.Center
+                        };
+                        cList.Add(coc);
+                    }
+
+                    if (oEntity is AcadText)
+                    {
+                        var oText = (AcadText)oEntity;
+                        var text = new clText()
+                        {
+                            TextString = oText.TextString,
+                            Orgin = oText.InsertionPoint
+                        };
+                        tList.Add(text);
+                    }
+                }  
+                
+                if (tList.Count>0)
+                {
+                    foreach (var text in tList)
+                    {
+                        var coc_NoName = cList.Where(o => string.IsNullOrEmpty(o.Name));
+                        if (coc_NoName!=null && coc_NoName.Count() >0)
+                        {
+                            var coc_GanNhat = coc_NoName.OrderBy(c => Math.Sqrt(Math.Pow(c.Orgin[0] - text.Orgin[0], 2) + Math.Pow(c.Orgin[1] - text.Orgin[1], 2))).First();
+                            coc_GanNhat.Name = text.TextString;
+                        }    
+                    }    
+                }
+
+
+                //var xlApp = Globals.ThisWorkbook.Application;
+                //var sht = (Worksheet)Globals.ThisWorkbook.ActiveSheet;
+
+                //sht.Range[$"A1"].Value = "STT";
+                //sht.Range[$"B1"].Value = "Tên cọc";
+                //sht.Range[$"C1"].Value = "Đường kính (mm)";
+                //sht.Range[$"D1"].Value = "X (mm)";
+                //sht.Range[$"E1"].Value = "Y (mm)";
+
+                long stt = 0;
+
+
+                cList = cList.OrderBy(o => o.Name).ToList();
+
+                double[] startPoint = acaDoc.Utility.GetPoint(Type.Missing, "Hãy chọn 1 điểm");
+
+                foreach (var coc in cList)
+                {
+                    stt++;
+                    var tkc = model.InsertBlock(new double[] { startPoint[0], startPoint[1], 0 }, "TKCOC", 1, 1, 1, 0);
+
+                    foreach (AcadAttributeReference attref in tkc.GetAttributes())
+                    {
+                        switch (attref.TagString)
+                        {
+                            case "STT":
+                                {
+                                    attref.TextString = stt.ToString();
+                                }
+                                break;
+
+                            case "NAME":
+                                {
+                                    attref.TextString = coc.Name;
+                                }
+                                break;
+
+                            case "DIAMETER":
+                                {
+                                    attref.TextString = Math.Round(coc.Diameter.Value, 0).ToString();
+                                }
+                                break;
+
+                            case "X":
+                                {
+                                    attref.TextString = Math.Round(coc.Orgin[0], 2).ToString();
+                                }
+                                break;
+
+                            case "Y":
+                                {
+                                    attref.TextString = Math.Round(coc.Orgin[1], 2).ToString();
+                                }
+                                break;
+                        }    
+                    }
+
+                    startPoint[1] = startPoint[1] - 100;
+                    //sht.Range[$"A{stt + 1}"].Value = stt;
+                    //sht.Range[$"B{stt + 1}"].Value = coc.Name;
+                    //sht.Range[$"C{stt + 1}"].Value = Math.Round(coc.Diameter.Value,0);
+                    //sht.Range[$"D{stt + 1}"].Value = Math.Round(coc.Orgin[0],2); 
+                    //sht.Range[$"E{stt + 1}"].Value = Math.Round(coc.Orgin[1], 2);
+                }    
             }
             catch
             {
