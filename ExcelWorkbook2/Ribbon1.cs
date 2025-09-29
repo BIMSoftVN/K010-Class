@@ -308,21 +308,21 @@ namespace ExcelWorkbook2
                 ss.Clear();
 
                 short[] filterType = new short[4];
-                object[] filterDate = new object[4];
+                object[] filterData = new object[4];
 
                 filterType[0] = (short)-4;
-                filterDate[0] = "<OR";
+                filterData[0] = "<OR";
 
                 filterType[1] = (short)0;
-                filterDate[1] = "TEXT";
+                filterData[1] = "TEXT";
 
                 filterType[2] = (short)0;
-                filterDate[2] = "CIRCLE";
+                filterData[2] = "CIRCLE";
 
                 filterType[3] = (short)-4;
-                filterDate[3] = "OR>";
+                filterData[3] = "OR>";
 
-                ss.SelectOnScreen(filterType, filterDate);
+                ss.SelectOnScreen(filterType, filterData);
 
                 List<clCoc> cList = new List<clCoc>();
                 List<clText> tList = new List<clText>();
