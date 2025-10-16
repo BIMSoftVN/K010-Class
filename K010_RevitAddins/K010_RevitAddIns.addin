@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<RevitAddIns>
+	<AddIn Type="Command">
+		<Name>Gán Id vào Parameter</Name>
+		<Assembly>K010\K010_RevitAddins.dll</Assembly>
+		<FullClassName>K010_RevitAddins.AssignBIMId</FullClassName>
+		<AddInId>9a8fc194-ee59-49d6-92e7-b7c6f6e3b180</AddInId>
+		<VendorId>ADSK</VendorId>
+		<VendorDescription>Autodesk Inc.</VendorDescription>
+	</AddIn>
+</RevitAddIns>
+

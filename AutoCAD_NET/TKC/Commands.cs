@@ -1,15 +1,18 @@
 ﻿using Autodesk.AutoCAD.ApplicationServices;
 using Autodesk.AutoCAD.DatabaseServices;
 using Autodesk.AutoCAD.EditorInput;
+using Autodesk.AutoCAD.Geometry;
 using Autodesk.AutoCAD.Internal;
 using Autodesk.AutoCAD.Runtime;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Authentication.ExtendedProtection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Application = Autodesk.AutoCAD.ApplicationServices.Application;
+using Exception = Autodesk.AutoCAD.Runtime.Exception;
 
 namespace AutoCAD_NET.TKC
 {
@@ -255,5 +258,68 @@ namespace AutoCAD_NET.TKC
 
             }
         }
+
+
+        [CommandMethod("VePolyline")]
+        public static void VePolyline()
+        {
+            try
+            {
+                Document AcadDoc = Application.DocumentManager.MdiActiveDocument;
+                Editor AcadEditor = AcadDoc.Editor;
+                Database AcadDb = AcadDoc.Database;
+
+                using (Transaction tr = AcadDb.TransactionManager.StartTransaction())
+                {
+                    var blockTable = tr.GetObject(AcadDb.BlockTableId, OpenMode.ForRead) as BlockTable;
+
+                    if (blockTable!=null)
+                    {
+                        var modelSpaceId = blockTable[BlockTableRecord.ModelSpace];
+                        var modelSpaceRec = tr.GetObject(modelSpaceId, OpenMode.ForWrite) as BlockTableRecord;
+
+                        Polyline pLine = new Polyline();
+                        pLine.AddVertexAt(0, new Point2d(2, 4), 0, 0, 0);
+                        pLine.AddVertexAt(1, new Point2d(4, 2), 0, 0, 0);
+                        pLine.AddVertexAt(2, new Point2d(6, 4), 0, 0, 0);
+
+                        pLine.Closed = true;
+                        pLine.Layer = "Layer1";
+
+                        modelSpaceRec.AppendEntity(pLine);
+                        tr.AddNewlyCreatedDBObject(pLine, true);
+
+                        Circle oCir = new Circle();
+
+                        oCir.Center = new Point3d(2, 4, 0);
+                        oCir.Radius = 2;
+                        oCir.Layer = "Layer2";
+
+                        modelSpaceRec.AppendEntity(oCir);
+                        tr.AddNewlyCreatedDBObject(oCir, true);
+
+
+                        Line oLine = new Line();
+
+                        oLine.StartPoint = new Point3d(2, 4, 0);
+                        oLine.EndPoint = new Point3d(2, 8, 0);
+                        oLine.Layer = "Layer3";
+
+                        modelSpaceRec.AppendEntity(oLine);
+                        tr.AddNewlyCreatedDBObject(oLine, true);
+
+
+                        tr.Commit();
+                    }    
+
+                    
+                }    
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
     }
 }
