@@ -1,0 +1,38 @@
+﻿<Window xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" 
+    x:Class="K010_RevitAddins.ImportCAD.vMain"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:K010_RevitAddins.ImportCAD"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d"
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+    dx:ThemeManager.ThemeName="Win11Light"
+    Title="{Binding LinkCAD.Category.Name, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+
+    <Window.DataContext>
+        <local:vmMain/>
+    </Window.DataContext>
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="200"/>
+        </Grid.ColumnDefinitions>
+        
+        <dxg:GridControl />
+
+        <StackPanel Grid.Column="1" Margin="5">
+            <ComboBox Margin="2">
+                
+            </ComboBox>
+
+            <Button Content="Vẽ cọc" Margin="2">
+                
+            </Button>
+        </StackPanel>
+    </Grid>
+    
+</Window>

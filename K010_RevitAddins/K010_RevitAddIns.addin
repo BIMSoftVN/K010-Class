@@ -8,5 +8,14 @@
 		<VendorId>ADSK</VendorId>
 		<VendorDescription>Autodesk Inc.</VendorDescription>
 	</AddIn>
+
+	<AddIn Type="Application">
+		<Name>K010RevitAddIns</Name>
+		<Assembly>K010\K010_RevitAddins.dll</Assembly>
+		<FullClassName>K010_RevitAddins.App</FullClassName>
+		<AddInId>3f5f4725-bc11-4273-a996-6b2966f3d337</AddInId>
+		<VendorId>ADSK</VendorId>
+		<VendorDescription>Autodesk Inc.</VendorDescription>
+	</AddIn>
 </RevitAddIns>
 

@@ -12,6 +12,8 @@
     <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -31,6 +33,380 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DevExpress.Charts.Designer.v24.1, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Wpf.Charts.24.1.7\lib\net452\DevExpress.Charts.Designer.v24.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Charts.v24.1.Core, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Charts.Core.24.1.7\lib\net452\DevExpress.Charts.v24.1.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.CodeParser.v24.1, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.CodeParser.24.1.7\lib\net452\DevExpress.CodeParser.v24.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Data.Desktop.v24.1, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Data.Desktop.24.1.7\lib\net452\DevExpress.Data.Desktop.v24.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Data.v24.1, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Data.24.1.7\lib\net452\DevExpress.Data.v24.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.DataAccess.v24.1, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.DataAccess.24.1.7\lib\net452\DevExpress.DataAccess.v24.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.DataVisualization.v24.1.Core, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.DataVisualization.Core.24.1.7\lib\net452\DevExpress.DataVisualization.v24.1.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Diagram.v24.1.Core, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Diagram.Core.24.1.7\lib\net452\DevExpress.Diagram.v24.1.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Dialogs.v24.1.Core, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Win.Dialogs.Core.24.1.7\lib\net452\DevExpress.Dialogs.v24.1.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Drawing.v24.1, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Drawing.24.1.7\lib\net452\DevExpress.Drawing.v24.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Images.v24.1, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Images.24.1.7\lib\net452\DevExpress.Images.v24.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Map.v24.1.Core, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Map.Core.24.1.7\lib\net452\DevExpress.Map.v24.1.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Mvvm.v24.1, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Mvvm.24.1.7\lib\net452\DevExpress.Mvvm.v24.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Mvvm.v24.1.DataModel, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Scaffolding.Core.24.1.7\lib\net452\DevExpress.Mvvm.v24.1.DataModel.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Mvvm.v24.1.DataModel.EFCore, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Scaffolding.EFCore.24.1.7\lib\net452\DevExpress.Mvvm.v24.1.DataModel.EFCore.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Mvvm.v24.1.ViewModel, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Scaffolding.Core.24.1.7\lib\net452\DevExpress.Mvvm.v24.1.ViewModel.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Office.v24.1.Core, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Office.Core.24.1.7\lib\net452\DevExpress.Office.v24.1.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Pdf.v24.1.Core, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Pdf.Core.24.1.7\lib\net452\DevExpress.Pdf.v24.1.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Pdf.v24.1.Drawing, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Pdf.Drawing.24.1.7\lib\net452\DevExpress.Pdf.v24.1.Drawing.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.PivotGrid.v24.1.Core, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.PivotGrid.Core.24.1.7\lib\net452\DevExpress.PivotGrid.v24.1.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Printing.v24.1.Core, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Printing.Core.24.1.7\lib\net452\DevExpress.Printing.v24.1.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.RichEdit.v24.1.Core, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.RichEdit.Core.24.1.7\lib\net452\DevExpress.RichEdit.v24.1.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.RichEdit.v24.1.Export, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.RichEdit.Export.24.1.7\lib\net452\DevExpress.RichEdit.v24.1.Export.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Sparkline.v24.1.Core, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Sparkline.Core.24.1.7\lib\net452\DevExpress.Sparkline.v24.1.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.SpellChecker.v24.1.Core, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.SpellChecker.Core.24.1.7\lib\net452\DevExpress.SpellChecker.v24.1.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Spreadsheet.v24.1.Core, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Spreadsheet.Core.24.1.7\lib\net452\DevExpress.Spreadsheet.v24.1.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.TreeMap.v24.1.Core, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.TreeMap.Core.24.1.7\lib\net452\DevExpress.TreeMap.v24.1.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Utils.v24.1, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Utils.24.1.7\lib\net452\DevExpress.Utils.v24.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Accordion.v24.1, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Wpf.Accordion.24.1.7\lib\net452\DevExpress.Xpf.Accordion.v24.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Carousel.v24.1, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Wpf.Carousel.24.1.7\lib\net452\DevExpress.Xpf.Carousel.v24.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Charts.v24.1, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Wpf.Charts.24.1.7\lib\net452\DevExpress.Xpf.Charts.v24.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.CodeView.v24.1, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Wpf.Reporting.24.1.7\lib\net452\DevExpress.Xpf.CodeView.v24.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Controls.v24.1, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Wpf.Controls.24.1.7\lib\net452\DevExpress.Xpf.Controls.v24.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Core.v24.1, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Wpf.Core.24.1.7\lib\net452\DevExpress.Xpf.Core.v24.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Core.v24.1.Extensions, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Wpf.Core.Extensions.24.1.7\lib\net452\DevExpress.Xpf.Core.v24.1.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.DataAccess.v24.1, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Wpf.Reporting.24.1.7\lib\net452\DevExpress.Xpf.DataAccess.v24.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Diagram.v24.1, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Wpf.Diagram.24.1.7\lib\net452\DevExpress.Xpf.Diagram.v24.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Dialogs.v24.1, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Wpf.Dialogs.24.1.7\lib\net452\DevExpress.Xpf.Dialogs.v24.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Docking.v24.1, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Wpf.Docking.24.1.7\lib\net452\DevExpress.Xpf.Docking.v24.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.DocumentViewer.v24.1.Core, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Wpf.DocumentViewer.Core.24.1.7\lib\net452\DevExpress.Xpf.DocumentViewer.v24.1.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.ExpressionEditor.v24.1, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Wpf.ExpressionEditor.24.1.7\lib\net452\DevExpress.Xpf.ExpressionEditor.v24.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Gantt.v24.1, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Wpf.Gantt.24.1.7\lib\net452\DevExpress.Xpf.Gantt.v24.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Gauges.v24.1, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Wpf.Gauges.24.1.7\lib\net452\DevExpress.Xpf.Gauges.v24.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Grid.v24.1, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Wpf.Grid.Core.24.1.7\lib\net452\DevExpress.Xpf.Grid.v24.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Grid.v24.1.Core, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Wpf.Grid.Core.24.1.7\lib\net452\DevExpress.Xpf.Grid.v24.1.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Grid.v24.1.Extensions, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Wpf.Grid.Core.24.1.7\lib\net452\DevExpress.Xpf.Grid.v24.1.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Layout.v24.1.Core, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Wpf.Docking.24.1.7\lib\net452\DevExpress.Xpf.Layout.v24.1.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.LayoutControl.v24.1, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Wpf.LayoutControl.24.1.7\lib\net452\DevExpress.Xpf.LayoutControl.v24.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Map.v24.1, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Wpf.Map.24.1.7\lib\net452\DevExpress.Xpf.Map.v24.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.NavBar.v24.1, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Wpf.NavBar.24.1.7\lib\net452\DevExpress.Xpf.NavBar.v24.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Office.v24.1, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Wpf.Office.24.1.7\lib\net452\DevExpress.Xpf.Office.v24.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.PdfViewer.v24.1, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Wpf.PdfViewer.24.1.7\lib\net452\DevExpress.Xpf.PdfViewer.v24.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.PivotGrid.v24.1, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Wpf.PivotGrid.24.1.7\lib\net452\DevExpress.Xpf.PivotGrid.v24.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Printing.v24.1, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Wpf.Printing.24.1.7\lib\net452\DevExpress.Xpf.Printing.v24.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.PrismAdapters.v24.1, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Wpf.PrismAdapters.24.1.7\lib\net452\DevExpress.Xpf.PrismAdapters.v24.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.PropertyGrid.v24.1, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Wpf.PropertyGrid.24.1.7\lib\net452\DevExpress.Xpf.PropertyGrid.v24.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.ReportDesigner.v24.1, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Wpf.Reporting.24.1.7\lib\net452\DevExpress.Xpf.ReportDesigner.v24.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Ribbon.v24.1, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Wpf.Ribbon.24.1.7\lib\net452\DevExpress.Xpf.Ribbon.v24.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.RichEdit.v24.1, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Wpf.RichEdit.24.1.7\lib\net452\DevExpress.Xpf.RichEdit.v24.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Scheduling.v24.1, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Wpf.Scheduling.24.1.7\lib\net452\DevExpress.Xpf.Scheduling.v24.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.SpellChecker.v24.1, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Wpf.SpellChecker.24.1.7\lib\net452\DevExpress.Xpf.SpellChecker.v24.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Spreadsheet.v24.1, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Wpf.Spreadsheet.24.1.7\lib\net452\DevExpress.Xpf.Spreadsheet.v24.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Themes.DXStyle.v24.1, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Wpf.Themes.DXStyle.24.1.7\lib\net452\DevExpress.Xpf.Themes.DXStyle.v24.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Themes.LightGray.v24.1, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Wpf.Themes.LightGray.24.1.7\lib\net452\DevExpress.Xpf.Themes.LightGray.v24.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Themes.MetropolisDark.v24.1, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Wpf.Themes.MetropolisDark.24.1.7\lib\net452\DevExpress.Xpf.Themes.MetropolisDark.v24.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Themes.MetropolisLight.v24.1, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Wpf.Themes.MetropolisLight.24.1.7\lib\net452\DevExpress.Xpf.Themes.MetropolisLight.v24.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Themes.Office2007Black.v24.1, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Wpf.Themes.Office2007Black.24.1.7\lib\net452\DevExpress.Xpf.Themes.Office2007Black.v24.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Themes.Office2007Blue.v24.1, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Wpf.Themes.Office2007Blue.24.1.7\lib\net452\DevExpress.Xpf.Themes.Office2007Blue.v24.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Themes.Office2007Silver.v24.1, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Wpf.Themes.Office2007Silver.24.1.7\lib\net452\DevExpress.Xpf.Themes.Office2007Silver.v24.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Themes.Office2010Black.v24.1, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Wpf.Themes.Office2010Black.24.1.7\lib\net452\DevExpress.Xpf.Themes.Office2010Black.v24.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Themes.Office2010Blue.v24.1, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Wpf.Themes.Office2010Blue.24.1.7\lib\net452\DevExpress.Xpf.Themes.Office2010Blue.v24.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Themes.Office2010Silver.v24.1, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Wpf.Themes.Office2010Silver.24.1.7\lib\net452\DevExpress.Xpf.Themes.Office2010Silver.v24.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Themes.Office2013.v24.1, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Wpf.Themes.Office2013.24.1.7\lib\net452\DevExpress.Xpf.Themes.Office2013.v24.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Themes.Office2013DarkGray.v24.1, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Wpf.Themes.Office2013DarkGray.24.1.7\lib\net452\DevExpress.Xpf.Themes.Office2013DarkGray.v24.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Themes.Office2013LightGray.v24.1, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Wpf.Themes.Office2013LightGray.24.1.7\lib\net452\DevExpress.Xpf.Themes.Office2013LightGray.v24.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Themes.Office2016Black.v24.1, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Wpf.Themes.Office2016Black.24.1.7\lib\net452\DevExpress.Xpf.Themes.Office2016Black.v24.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Themes.Office2016BlackSE.v24.1, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Wpf.Themes.Office2016BlackSE.24.1.7\lib\net452\DevExpress.Xpf.Themes.Office2016BlackSE.v24.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Themes.Office2016Colorful.v24.1, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Wpf.Themes.Office2016Colorful.24.1.7\lib\net452\DevExpress.Xpf.Themes.Office2016Colorful.v24.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Themes.Office2016ColorfulSE.v24.1, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Wpf.Themes.Office2016ColorfulSE.24.1.7\lib\net452\DevExpress.Xpf.Themes.Office2016ColorfulSE.v24.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Themes.Office2016DarkGraySE.v24.1, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Wpf.Themes.Office2016DarkGraySE.24.1.7\lib\net452\DevExpress.Xpf.Themes.Office2016DarkGraySE.v24.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Themes.Office2016White.v24.1, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Wpf.Themes.Office2016White.24.1.7\lib\net452\DevExpress.Xpf.Themes.Office2016White.v24.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Themes.Office2016WhiteSE.v24.1, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Wpf.Themes.Office2016WhiteSE.24.1.7\lib\net452\DevExpress.Xpf.Themes.Office2016WhiteSE.v24.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Themes.Office2019Black.v24.1, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Wpf.Themes.Office2019Black.24.1.7\lib\net452\DevExpress.Xpf.Themes.Office2019Black.v24.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Themes.Office2019Colorful.v24.1, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Wpf.Themes.Office2019Colorful.24.1.7\lib\net452\DevExpress.Xpf.Themes.Office2019Colorful.v24.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Themes.Office2019DarkGray.v24.1, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Wpf.Themes.Office2019DarkGray.24.1.7\lib\net452\DevExpress.Xpf.Themes.Office2019DarkGray.v24.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Themes.Office2019HighContrast.v24.1, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Wpf.Themes.Office2019HighContrast.24.1.7\lib\net452\DevExpress.Xpf.Themes.Office2019HighContrast.v24.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Themes.Office2019White.v24.1, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Wpf.Themes.Office2019White.24.1.7\lib\net452\DevExpress.Xpf.Themes.Office2019White.v24.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Themes.Seven.v24.1, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Wpf.Themes.Seven.24.1.7\lib\net452\DevExpress.Xpf.Themes.Seven.v24.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Themes.TouchlineDark.v24.1, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Wpf.Themes.TouchlineDark.24.1.7\lib\net452\DevExpress.Xpf.Themes.TouchlineDark.v24.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Themes.VS2010.v24.1, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Wpf.Themes.VS2010.24.1.7\lib\net452\DevExpress.Xpf.Themes.VS2010.v24.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Themes.VS2017Blue.v24.1, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Wpf.Themes.VS2017Blue.24.1.7\lib\net452\DevExpress.Xpf.Themes.VS2017Blue.v24.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Themes.VS2017Dark.v24.1, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Wpf.Themes.VS2017Dark.24.1.7\lib\net452\DevExpress.Xpf.Themes.VS2017Dark.v24.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Themes.VS2017Light.v24.1, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Wpf.Themes.VS2017Light.24.1.7\lib\net452\DevExpress.Xpf.Themes.VS2017Light.v24.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Themes.VS2019Blue.v24.1, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Wpf.Themes.VS2019Blue.24.1.7\lib\net452\DevExpress.Xpf.Themes.VS2019Blue.v24.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Themes.VS2019Dark.v24.1, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Wpf.Themes.VS2019Dark.24.1.7\lib\net452\DevExpress.Xpf.Themes.VS2019Dark.v24.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Themes.VS2019Light.v24.1, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Wpf.Themes.VS2019Light.24.1.7\lib\net452\DevExpress.Xpf.Themes.VS2019Light.v24.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Themes.Win10Dark.v24.1, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Wpf.Themes.Win10Dark.24.1.7\lib\net452\DevExpress.Xpf.Themes.Win10Dark.v24.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Themes.Win10Light.v24.1, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Wpf.Themes.Win10Light.24.1.7\lib\net452\DevExpress.Xpf.Themes.Win10Light.v24.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Themes.Win11Dark.v24.1, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Wpf.Themes.Win11Dark.24.1.7\lib\net452\DevExpress.Xpf.Themes.Win11Dark.v24.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Themes.Win11Light.v24.1, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Wpf.Themes.Win11Light.24.1.7\lib\net452\DevExpress.Xpf.Themes.Win11Light.v24.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.ThemesLW.v24.1, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Wpf.ThemesLW.24.1.7\lib\net452\DevExpress.Xpf.ThemesLW.v24.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.TreeMap.v24.1, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Wpf.TreeMap.24.1.7\lib\net452\DevExpress.Xpf.TreeMap.v24.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.TypedStyles.v24.1, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Wpf.TypedStyles.24.1.7\lib\net452\DevExpress.Xpf.TypedStyles.v24.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpo.v24.1, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Xpo.24.1.7\lib\net452\DevExpress.Xpo.v24.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraBars.v24.1, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Win.Navigation.24.1.7\lib\net452\DevExpress.XtraBars.v24.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraBars.v24.1.Design, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Win.Navigation.24.1.7\lib\net452\Design\WinForms\Server\DevExpress.XtraBars.v24.1.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraCharts.v24.1, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Charts.24.1.7\lib\net452\DevExpress.XtraCharts.v24.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraEditors.v24.1, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Win.Navigation.24.1.7\lib\net452\DevExpress.XtraEditors.v24.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraEditors.v24.1.Design, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Win.Navigation.24.1.7\lib\net452\Design\WinForms\Server\DevExpress.XtraEditors.v24.1.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraGauges.v24.1.Core, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Gauges.Core.24.1.7\lib\net452\DevExpress.XtraGauges.v24.1.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraGrid.v24.1, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Win.Grid.24.1.7\lib\net452\DevExpress.XtraGrid.v24.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraGrid.v24.1.Design, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Win.Grid.24.1.7\lib\net452\Design\WinForms\Server\DevExpress.XtraGrid.v24.1.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraLayout.v24.1, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Win.Navigation.24.1.7\lib\net452\DevExpress.XtraLayout.v24.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraLayout.v24.1.Design, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Win.Navigation.24.1.7\lib\net452\Design\WinForms\Server\DevExpress.XtraLayout.v24.1.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraPrinting.v24.1, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Win.Printing.24.1.7\lib\net452\DevExpress.XtraPrinting.v24.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraPrinting.v24.1.Design, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Win.Printing.24.1.7\lib\net452\Design\WinForms\Server\DevExpress.XtraPrinting.v24.1.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraReports.v24.1, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Reporting.Core.24.1.7\lib\net452\DevExpress.XtraReports.v24.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraScheduler.v24.1, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Win.Scheduler.24.1.7\lib\net452\DevExpress.XtraScheduler.v24.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraScheduler.v24.1.Core, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Scheduler.Core.24.1.7\lib\net452\DevExpress.XtraScheduler.v24.1.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraScheduler.v24.1.Core.Desktop, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Scheduler.CoreDesktop.24.1.7\lib\net452\DevExpress.XtraScheduler.v24.1.Core.Desktop.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraScheduler.v24.1.Design, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Win.Scheduler.24.1.7\lib\net452\Design\WinForms\Server\DevExpress.XtraScheduler.v24.1.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraScheduler.v24.1.Reporting, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Win.SchedulerReporting.24.1.7\lib\net452\DevExpress.XtraScheduler.v24.1.Reporting.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraTreeList.v24.1, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Win.TreeList.24.1.7\lib\net452\DevExpress.XtraTreeList.v24.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraTreeList.v24.1.Design, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Win.TreeList.24.1.7\lib\net452\Design\WinForms\Server\DevExpress.XtraTreeList.v24.1.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="RevitAPI">
       <HintPath>..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2024\RevitAPI.dll</HintPath>
       <Private>False</Private>
@@ -41,21 +417,46 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App.cs" />
     <Compile Include="Commands.cs" />
+    <Compile Include="ImportCAD\Commands.cs" />
+    <Compile Include="ImportCAD\vMain.xaml.cs">
+      <DependentUpon>vMain.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImportCAD\vmMain.cs" />
+    <Compile Include="mHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="K010_RevitAddIns.addin">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="ImportCAD\vMain.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Photo\SolidWorks.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\K010Libs\K010Libs.csproj">
+      <Project>{91C603B6-B351-4C1A-9C82-FA1409A3BA00}</Project>
+      <Name>K010Libs</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
@@ -63,4 +464,11 @@
 if not exist "$(AppData)\Autodesk\REVIT\Addins\2024\K010" mkdir  "$(AppData)\Autodesk\REVIT\Addins\2024\K010""
 copy "$(ProjectDir)$(OutputPath)*.dll" "$(AppData)\Autodesk\REVIT\Addins\2024\K010"</PostBuildEvent>
   </PropertyGroup>
+  <Import Project="..\packages\DevExpress.Reporting.Core.24.1.7\build\DevExpress.Reporting.Core.targets" Condition="Exists('..\packages\DevExpress.Reporting.Core.24.1.7\build\DevExpress.Reporting.Core.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\DevExpress.Reporting.Core.24.1.7\build\DevExpress.Reporting.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\DevExpress.Reporting.Core.24.1.7\build\DevExpress.Reporting.Core.targets'))" />
+  </Target>
 </Project>
