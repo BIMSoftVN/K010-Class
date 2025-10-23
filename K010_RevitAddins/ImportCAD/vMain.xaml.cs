@@ -22,6 +22,7 @@ namespace K010_RevitAddins.ImportCAD
     {
         public vMain()
         {
+            var _ = new Microsoft.Xaml.Behaviors.DefaultTriggerAttribute(typeof(Trigger), typeof(Microsoft.Xaml.Behaviors.TriggerBase), null);
             InitializeComponent();
         }
     }

@@ -8,10 +8,16 @@
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d"
-    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
-    dx:ThemeManager.ThemeName="Win11Light"
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+        dx:ThemeManager.ThemeName="Win11Light"
     Title="{Binding LinkCAD.Category.Name, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
 
+    <b:Interaction.Triggers>
+        <b:EventTrigger EventName="Loaded">
+            <b:InvokeCommandAction Command="{Binding LoadAllCmd}" />
+        </b:EventTrigger>
+    </b:Interaction.Triggers>
+    
     <Window.DataContext>
         <local:vmMain/>
     </Window.DataContext>
@@ -22,14 +28,25 @@
             <ColumnDefinition Width="200"/>
         </Grid.ColumnDefinitions>
         
-        <dxg:GridControl />
+        <dxg:GridControl AutoGenerateColumns="AddNew"
+                         SelectionMode="Row"
+                         ItemsSource="{Binding CadList, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
 
         <StackPanel Grid.Column="1" Margin="5">
-            <ComboBox Margin="2">
-                
+            <ComboBox Margin="2"
+                      DisplayMemberPath="TypeName"
+                      SelectedItem="{Binding FamilySelect, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                      ItemsSource="{Binding FamilyList, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+
+                <b:Interaction.Triggers>
+                    <b:EventTrigger EventName="SelectionChanged">
+                        <b:InvokeCommandAction Command="{Binding FamilyChangeCmd}" />
+                    </b:EventTrigger>
+                </b:Interaction.Triggers>
             </ComboBox>
 
-            <Button Content="Vẽ cọc" Margin="2">
+            <Button Content="Vẽ cọc" Margin="2"
+                    Command="{Binding VeCocCmd, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
                 
             </Button>
         </StackPanel>
