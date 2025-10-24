@@ -60,16 +60,34 @@ namespace K010_RevitAddins.ImportCAD
             }
         }
 
-        private clFamilyCoc _FamilySelect = new clFamilyCoc();
-        public clFamilyCoc FamilySelect
+
+        private ObservableRangeCollection<string> _FamilyNames = new ObservableRangeCollection<string>();
+        public ObservableRangeCollection<string> FamilyNames
         {
             get
             {
-                return _FamilySelect;
+                return _FamilyNames;
             }
             set
             {
-                _FamilySelect = value;
+                _FamilyNames = value;
+                OnPropertyChanged();
+            }
+        }
+
+
+
+
+        private string _FamilyNameSelect = null;
+        public string FamilyNameSelect
+        {
+            get
+            {
+                return _FamilyNameSelect;
+            }
+            set
+            {
+                _FamilyNameSelect = value;
                 OnPropertyChanged();
             }
         }
@@ -96,6 +114,7 @@ namespace K010_RevitAddins.ImportCAD
             {
                 CadList.Clear();
                 FamilyList.Clear();
+                FamilyNames.Clear();
 
                 var cl = GetCadCircleFromLinkRevit(LinkCAD);
                 if (cl != null)
@@ -107,6 +126,7 @@ namespace K010_RevitAddins.ImportCAD
                 if (cl2 != null)
                 {
                     FamilyList.AddRange(cl2.Result);
+                    FamilyNames.AddRange(FamilyList.Select(x => x.FamilyName).Distinct().ToList());
                 }
 
 
@@ -236,7 +256,7 @@ namespace K010_RevitAddins.ImportCAD
         {
             try
             {
-                var familyList = FamilyList.Where(x => x.FamilyName == FamilySelect.FamilyName).ToList();
+                var familyList = FamilyList.Where(x => x.FamilyName == FamilyNameSelect).ToList();
 
                 foreach (var cad in CadList)
                 {

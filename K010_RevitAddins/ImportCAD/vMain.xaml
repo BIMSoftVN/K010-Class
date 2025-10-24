@@ -6,8 +6,9 @@
     xmlns:local="clr-namespace:K010_RevitAddins.ImportCAD"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:DesignHeight="450"
-    d:DesignWidth="800"
+    d:DesignWidth="500"
     mc:Ignorable="d"
+        Width="900"
     xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
         dx:ThemeManager.ThemeName="Win11Light"
     Title="{Binding LinkCAD.Category.Name, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
@@ -34,9 +35,8 @@
 
         <StackPanel Grid.Column="1" Margin="5">
             <ComboBox Margin="2"
-                      DisplayMemberPath="TypeName"
-                      SelectedItem="{Binding FamilySelect, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                      ItemsSource="{Binding FamilyList, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+                      SelectedItem="{Binding FamilyNameSelect, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                      ItemsSource="{Binding FamilyNames, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
 
                 <b:Interaction.Triggers>
                     <b:EventTrigger EventName="SelectionChanged">
