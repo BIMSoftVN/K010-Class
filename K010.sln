@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoCAD_NET", "AutoCAD_NET\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "K010_RevitAddins", "K010_RevitAddins\K010_RevitAddins.csproj", "{D9A1F9A5-7640-42B0-9891-54EC811DFBA0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Etabs_COM", "Etabs_COM\Etabs_COM.csproj", "{59291F28-9821-1E64-471E-99340AC1D0A2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,6 +77,10 @@ Global
 		{D9A1F9A5-7640-42B0-9891-54EC811DFBA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D9A1F9A5-7640-42B0-9891-54EC811DFBA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D9A1F9A5-7640-42B0-9891-54EC811DFBA0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59291F28-9821-1E64-471E-99340AC1D0A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59291F28-9821-1E64-471E-99340AC1D0A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59291F28-9821-1E64-471E-99340AC1D0A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59291F28-9821-1E64-471E-99340AC1D0A2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
