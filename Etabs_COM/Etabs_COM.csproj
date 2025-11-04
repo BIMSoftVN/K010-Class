@@ -142,6 +142,9 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Classes\clArea.cs" />
+    <Compile Include="Classes\clFrameForce.cs" />
+    <Compile Include="Classes\clLine.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Ribbon1.cs">
       <SubType>Component</SubType>
